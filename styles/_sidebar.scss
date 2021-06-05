@@ -1,0 +1,22 @@
+.sidebar{
+    flex:.125;
+    height: 100%;
+    border-right: 1px solid rgba(0, 0, 0, .3);
+    &_title{
+        margin-top: 5vh;
+        margin-left: 10px;
+        margin-bottom: 2vh;
+        color: rgb(75, 75, 75);
+    }
+    li{
+        list-style: none;
+    }
+    .item{
+        padding: 10px;
+        padding-left: 10px;
+        cursor: pointer;
+    }
+    .item:hover{
+        //background-color: lighten($color: $pink, $amount: 10);
+    }
+}

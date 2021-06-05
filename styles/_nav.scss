@@ -1,0 +1,29 @@
+.navBar{
+width: 100%;
+height: fit-content;
+position: fixed;
+    &-topSection{
+        
+        background-color: black;
+        color: white ;
+        height: 50px;
+        .content{
+            height: fit-content;
+            display: flex;
+            justify-content: space-between;
+            margin: auto  5vw;
+            padding-top: 12px;
+        }
+    }
+    &-bottomSection{
+        background-color: white;
+        height: 75px;
+        .content{
+            height: fit-content;
+            display: flex;
+            justify-content: space-between;
+            margin: auto  5vw;
+            padding-top: 25px;
+        }
+    }
+}
