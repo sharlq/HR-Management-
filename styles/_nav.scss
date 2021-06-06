@@ -25,5 +25,13 @@ position: fixed;
             margin: auto  5vw;
             padding-top: 25px;
         }
+        &_rightSection{
+            display: flex;
+            list-style: none;
+            li{
+                margin-left:20px;
+                cursor: pointer;
+            }
+        }
     }
 }

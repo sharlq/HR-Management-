@@ -1,6 +1,7 @@
 @import 'config';
 @import 'sidebar';
 @import 'nav';
+@import 'home';
 .root{
 
 }
@@ -9,5 +10,5 @@
 }
 .mainContent{
     display: flex;
-    margin-top: 150px;
+    padding-top: 120px;
 }
