@@ -1,0 +1,35 @@
+.home{
+    margin: auto;
+    background: white;
+    width: 75vw;
+    height: 80vh;
+    border-radius: 50px;
+    box-shadow: 1px 1px 12px rgba(0, 0, 0, .3);
+    &-title{
+        width: fit-content;
+        margin:auto ;
+        margin-top: 12vh;
+    }
+    &-paragraph{
+        width: fit-content;
+        margin:auto ;
+        margin-top: 2vh;
+    }
+    &-cards{
+        display: flex;
+        margin: auto;
+        justify-content: space-between;
+        margin-top: 15vh;
+        width: fit-content;
+        height: fit-content;
+        &_card{
+            background: white !important;
+            height: 30vh !important;
+            margin:0 2vw;
+            .cardTitle{
+                width: fit-content;
+                margin: 0 auto ;
+            }
+        }
+    }
+}

@@ -12,7 +12,21 @@ const NavBar = () => {
       <div className="navBar-bottomSection">
         <div className="content">
           <h4>HR Manager</h4>
-          <p>Log in</p>
+          <ul className="navBar-bottomSection_rightSection">
+              <li>
+                  Home
+              </li>
+              <li>
+                  Projects
+              </li>
+              <li>
+                hiarachy
+              </li>
+              <li>
+                  Profile
+              </li>
+          </ul>
+
         </div>
       </div>
     </nav>
