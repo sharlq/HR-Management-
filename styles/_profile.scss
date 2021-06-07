@@ -1,0 +1,46 @@
+.profile {
+  margin: auto;
+  margin-top: 3vh;
+  background: white;
+  width: 75vw;
+  height: 80vh;
+  border-radius: 15px;
+  box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.3);
+  .avatarSection {
+    display: flex;
+    margin-top: 5vh;
+    margin-left: 2vw;
+    &-imageContainer {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      overflow: hidden;
+      .image {
+        height: 100%;
+      }
+    }
+    .button {
+      margin-left: 5vw;
+      height: fit-content;
+      align-self: center;
+    }
+  }
+  .position {
+    margin-top: 4vh;
+    margin-left: 2vw;
+
+    &-text {
+      margin-right: 4vw;
+    }
+  }
+  .aboutMe{
+    margin-top: 4vh;
+    margin-left: 2vw;
+    &-text{
+        width: 65vw;
+    }
+  }
+  .title{
+    margin-bottom: 2vh;
+  }
+}

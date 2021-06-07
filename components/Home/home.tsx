@@ -11,12 +11,21 @@ const Home: React.FC<{ employeeName: string }> = ({ employeeName }) => {
       <div className="home-cards">
         <CardAnimated yourClass={"home-cards_card"}>
           <h3 className="cardTitle">visit your profile</h3>
+          <div className="imageContainer">
+            <img className='image' src='https://drive.google.com/uc?export=view&id=1Sg3iRb5H-1-z1DrkfdOLKKy9pRnireMk' alt='profile picture'/>
+          </div>
         </CardAnimated>
         <CardAnimated yourClass={"home-cards_card"}>
           <h3 className="cardTitle">see your projects</h3>
+          <div className="imageContainer">
+            <img className='image' src='https://drive.google.com/uc?export=view&id=1WFS4WssjhTGl75eIyHk4tOHKBAGW82ke' alt='profile picture'/>
+          </div>
         </CardAnimated>
         <CardAnimated yourClass={"home-cards_card"}>
           <h3 className="cardTitle">services</h3>
+          <div className="imageContainer">
+            <img className='image' src='https://drive.google.com/uc?export=view&id=1YScnFEOkvnLJA0PTxQR_2ZAPOnLqQsEw' alt='profile picture'/>
+          </div>
         </CardAnimated>
       </div>
     </div>
