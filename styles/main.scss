@@ -2,12 +2,7 @@
 @import 'sidebar';
 @import 'nav';
 @import 'home';
-.root{
-
-}
-.main{
-    
-}
+@import 'profile'; 
 .mainContent{
     display: flex;
     padding-top: 120px;
