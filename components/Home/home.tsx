@@ -29,9 +29,11 @@ const Home: React.FC<{ employeeName: string }> = ({ employeeName }) => {
         </CardAnimated>
         <CardAnimated yourClass={"home-cards_card"}>
           <h3 className="cardTitle">services</h3>
+          <Link href="/services">
           <div className="imageContainer">
             <img className='image' src='https://drive.google.com/uc?export=view&id=1YScnFEOkvnLJA0PTxQR_2ZAPOnLqQsEw' alt='profile picture'/>
           </div>
+          </Link>
         </CardAnimated>
       </div>
     </div>

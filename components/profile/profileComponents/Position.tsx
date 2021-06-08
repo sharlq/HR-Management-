@@ -5,7 +5,6 @@ const Position = () => {
         <div className="position">
         <h3 className="title">Position</h3>
         <TextField
-          autoComplete="sex"
           className="position-text"
           id="outlined-basic"
           label="Designation"

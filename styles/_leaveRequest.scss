@@ -1,0 +1,23 @@
+.leaveRequest{
+    margin: auto;
+    margin-top: 10vh;
+    margin-bottom: auto;
+    background: white;
+    width: 75vw;
+    height: fit-content;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.3);
+    &-title{
+        margin-bottom: 5vh;
+    }
+    &-form{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        .btn{
+            width: fit-content;
+            justify-self: center;
+        }
+    }
+}
