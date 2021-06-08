@@ -1,5 +1,5 @@
 import React from "react";
-
+import Link from 'next/Link'
 const NavBar = () => {
   return (
     <nav className="navBar">
@@ -13,18 +13,22 @@ const NavBar = () => {
         <div className="content">
           <h4>HR Manager</h4>
           <ul className="navBar-bottomSection_rightSection">
+          <Link href="/">
               <li>
                   Home
               </li>
+              </Link>
               <li>
                   Projects
               </li>
               <li>
                 hiarachy
               </li>
+              <Link href="./profile">
               <li>
                   Profile
               </li>
+              </Link>
           </ul>
 
         </div>

@@ -1,14 +1,15 @@
 .profile {
   margin: auto;
-  margin-top: 3vh;
+  margin-top: 4vh;
+  margin-bottom: 5vh;
   background: white;
   width: 75vw;
-  height: 80vh;
+  height: fit-content;
+  padding: 50px;
   border-radius: 15px;
   box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.3);
   .avatarSection {
     display: flex;
-    margin-top: 5vh;
     margin-left: 2vw;
     &-imageContainer {
       width: 150px;
@@ -33,14 +34,45 @@
       margin-right: 4vw;
     }
   }
-  .aboutMe{
+  .aboutMe {
     margin-top: 4vh;
     margin-left: 2vw;
-    &-text{
-        width: 65vw;
+    &-text {
+      width: 65vw;
     }
   }
-  .title{
+  .title {
     margin-bottom: 2vh;
+  }
+  &-bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 2vw;
+    margin-top: 4vh;
+    .skills-paper {
+      padding: 10px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      width: 400px;
+      height: 200px;
+      .skill {
+        padding: 10px;
+        background-color: royalblue;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        width: 150px;
+        margin: 5px;
+        border-radius: 4px;
+        .skill-taile {
+          display: flex;
+          .divider {
+            height: 100%;
+            width: 1px;
+            background-color: white;
+            margin-right: 5px;
+          }
+        }
+      }
+    }
   }
 }
