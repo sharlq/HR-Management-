@@ -1,9 +1,10 @@
 .home{
     margin: auto;
+    margin-top: 4vh;
     background: white;
     width: 75vw;
     height: 80vh;
-    border-radius: 50px;
+    border-radius: 15px;
     box-shadow: 1px 1px 12px rgba(0, 0, 0, .3);
     &-title{
         width: fit-content;

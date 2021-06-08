@@ -1,5 +1,6 @@
 import React from "react";
 import { CardAnimated } from "sharlq-comp-lib";
+import Link from 'next/Link'
 const Home: React.FC<{ employeeName: string }> = ({ employeeName }) => {
   return (
     <div className="home">
@@ -10,10 +11,13 @@ const Home: React.FC<{ employeeName: string }> = ({ employeeName }) => {
       </h4>
       <div className="home-cards">
         <CardAnimated yourClass={"home-cards_card"}>
+          
           <h3 className="cardTitle">visit your profile</h3>
+          <Link href="/profile">
           <div className="imageContainer">
             <img className='image' src='https://drive.google.com/uc?export=view&id=1Sg3iRb5H-1-z1DrkfdOLKKy9pRnireMk' alt='profile picture'/>
           </div>
+          </Link>
         </CardAnimated>
         <CardAnimated yourClass={"home-cards_card"}>
           <h3 className="cardTitle">see your projects</h3>
