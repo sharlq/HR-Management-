@@ -1,0 +1,43 @@
+.projects{
+    margin: auto;
+    margin-top: 4vh;
+    margin-bottom: 5vh;
+    background: white;
+    width: 75vw;
+    height: 80vh;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 1px 1px 12px rgba(0, 0, 0, .3);
+    &-workflow{
+        display: flex;
+        justify-content: space-between;
+        .tasksContainer{
+            margin-top: 5vh;
+            padding: 20px;
+            width: 20vw;
+            height: fit-content;
+            min-height: 15vh;
+            border: 1px solid rgba(0, 0, 0, .3);
+            border-radius:5px;
+            background: $whiteBackground;
+            &-title{
+                display: flex;
+                justify-content: space-between;
+            }
+            .task{
+                margin-top: 2vh;
+                padding: 10px;
+                box-shadow: 1px 1px 12px rgba(0, 0, 0, .3);
+                border-radius: 5px;
+                background: white;
+                &-title{
+                    margin-bottom: 1vh;
+                }
+                &-description{
+                    margin-bottom: 1vh;
+                }
+
+            }
+        }
+    }
+}
