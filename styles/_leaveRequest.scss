@@ -15,6 +15,9 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 50px;
+        .btnGroup{
+            margin-top: 1vh;
+        }
         .btn{
             width: fit-content;
             justify-self: center;
