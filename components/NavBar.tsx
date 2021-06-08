@@ -19,7 +19,9 @@ const NavBar = () => {
             <Link href="./projects">
               <li>Projects</li>
             </Link>
-            <li>hiarachy</li>
+            <Link href="./services">
+            <li>Services</li>
+            </Link>
             <Link href="./profile">
               <li>Profile</li>
             </Link>
