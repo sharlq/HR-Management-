@@ -4,7 +4,6 @@ import Button from "@material-ui/core/Button";
 import axios from 'axios'
 import {Alert} from '@material-ui/lab';
 const Signup = () => {
-  //@type = { readonly current: HTMLDivElement | null }
   const userNameRef= useRef<HTMLInputElement>()
   const emailRef = useRef<HTMLInputElement>()
   const passwordRef = useRef<HTMLInputElement>()
@@ -17,16 +16,23 @@ const Signup = () => {
 
   const [signInError,setSignInError] = useState<boolean>(false)
   const [signInErrorMessage,setSignInErrorMessage] = useState<string>("")
-  const handleSubmit = (e)=>{
+  const handleSubmit = async(e)=>{
     e.preventDefault
     if(passwordRef.current.value === repPasswordRef.current.value && emailRef.current.value && userNameRef.current.value ){
       setSignInError(false)
       setSignInErrorMessage("")
-      axios.post('http://localhost:3000/api/users',{
+    
+   let postAndCheck = await  axios.post('http://localhost:3000/api/users',{
       name:userNameRef.current.value,
       password:passwordRef.current.value,
       email:emailRef.current.value
-    })} else if(passwordRef.current.value !== repPasswordRef.current.value){
+      })
+      console.log(postAndCheck)
+    if(postAndCheck.data==="this user name is already used" ||postAndCheck.data==="this email is already used"){
+      setSignInError(true)
+      setSignInErrorMessage(postAndCheck.data)
+    }
+  } else if(passwordRef.current.value !== repPasswordRef.current.value){
       setSignInError(true)
       setSignInErrorMessage("password do not match")
     } else if(!emailRef.current.value){
