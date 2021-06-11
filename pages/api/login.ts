@@ -2,6 +2,7 @@ import user from "../../Model/user";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 type userData = {
+    _id:any,
   name: string;
   password: string;
   email: string;
@@ -13,25 +14,26 @@ export default async (req, res) => {
     let theUser: userData | null = null;
     await user.findOne({ name: data.name }, (err, dat) => {
       if (!err && dat) {
-        const claims = {
-          email: dat._id,
-        };
-        const token = jwt.sign(claims, JWT_SECRET,{expiresIn:"2d"});
-        res.json({ authToken: token });
+        theUser=dat
       } else {
-        console.log("dead");
+        res.json({authToken:false})
       }
     });
     if (theUser) {
       bcrypt.compare(data.password, theUser.password, (err, result) => {
         if (result) {
-          console.log("we got'em");
+            const claims = {
+                id: theUser._id,
+                email:theUser.email
+              };
+            const token = jwt.sign(claims, JWT_SECRET,{expiresIn:"2d"});
+            res.json({ authToken: token });
         } else {
-          console.log("shit he is a fraud");
+            res.json({authToken:false})
         }
       });
     } else {
-      console.log("theUser is a ghost");
+        res.json({authToken:false})
     }
   }
 };
