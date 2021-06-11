@@ -3,18 +3,32 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Link from "next/Link";
 import axios from "axios";
+import {useDispatch} from "react-redux"
+import {setToken} from '../../redux/features/tokenSlice'
+import {useSelector} from 'react-redux'
+import {selectToken} from '../../redux/features/tokenSlice'
 const Login = () => {
   const usernameRef = useRef<HTMLInputElement>();
   const passwordRef = useRef<HTMLInputElement>();
 
   const [userName,setUserName]=useState<string>("")
   const [password,setPassword]=useState<string>("")
-  const handleLogIn = (e) => {
+
+  let dispatch = useDispatch()
+  let toktok = useSelector(selectToken)
+  const handleLogIn = async(e) => {
     e.preventDefault();
-    axios.post('http://localhost:3000/api/login',{
+   let authToken = await axios.post('http://localhost:3000/api/login',{
       name:usernameRef.current.value,
       password:passwordRef.current.value
     })
+    
+    dispatch(
+      setToken({
+        token:authToken.data.authToken
+      })
+    )
+    console.log(authToken,toktok)
   };
 
   return (
