@@ -7,12 +7,16 @@ import {useDispatch} from "react-redux"
 import {setToken} from '../../redux/features/tokenSlice'
 import {useSelector} from 'react-redux'
 import {selectToken} from '../../redux/features/tokenSlice'
+import {Alert} from '@material-ui/lab';
 const Login = () => {
   const usernameRef = useRef<HTMLInputElement>();
   const passwordRef = useRef<HTMLInputElement>();
 
   const [userName,setUserName]=useState<string>("")
   const [password,setPassword]=useState<string>("")
+
+  const [logInError,setLogInError] = useState<boolean>(false)
+  const [logInErrorMessage,setLogInErrorMessage] = useState<string>("")
 
   let dispatch = useDispatch()
   let toktok = useSelector(selectToken)
@@ -22,19 +26,26 @@ const Login = () => {
       name:usernameRef.current.value,
       password:passwordRef.current.value
     })
-    
+  if(authToken.data.authToken){
     dispatch(
       setToken({
         token:authToken.data.authToken
       })
     )
+    setLogInError(false)
+    setLogInErrorMessage('')
+  }else{
+    setLogInError(true)
+    setLogInErrorMessage('eather user name or password is wrong')
+  }
     console.log(authToken,toktok)
   };
 
   return (
     <form className="login">
-      {/*  */}
+      
       <h3>Log In</h3>
+      {logInError && <Alert className="alert" severity="error">{logInErrorMessage}</Alert>}
       <TextField
         inputRef={usernameRef}
         className="login-input"
