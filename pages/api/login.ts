@@ -24,7 +24,7 @@ export default async (req, res) => {
         if (result) {
             const claims = {
                 id: theUser._id,
-                email:theUser.email
+                name:theUser.name
               };
             const token = jwt.sign(claims, JWT_SECRET,{expiresIn:"2d"});
             res.json({ authToken: token });

@@ -5,9 +5,8 @@ import Link from "next/Link";
 import axios from "axios";
 import {useDispatch} from "react-redux"
 import {setToken} from '../../redux/features/tokenSlice'
-import {useSelector} from 'react-redux'
-import {selectToken} from '../../redux/features/tokenSlice'
 import {Alert} from '@material-ui/lab';
+import { useRouter } from 'next/router'
 const Login = () => {
   const usernameRef = useRef<HTMLInputElement>();
   const passwordRef = useRef<HTMLInputElement>();
@@ -18,8 +17,10 @@ const Login = () => {
   const [logInError,setLogInError] = useState<boolean>(false)
   const [logInErrorMessage,setLogInErrorMessage] = useState<string>("")
 
+  const router = useRouter();
+
   let dispatch = useDispatch()
-  let toktok = useSelector(selectToken)
+  
   const handleLogIn = async(e) => {
     e.preventDefault();
    let authToken = await axios.post('http://localhost:3000/api/login',{
@@ -34,11 +35,12 @@ const Login = () => {
     )
     setLogInError(false)
     setLogInErrorMessage('')
+    router.push('home')
   }else{
     setLogInError(true)
     setLogInErrorMessage('eather user name or password is wrong')
   }
-    console.log(authToken,toktok)
+    
   };
 
   return (

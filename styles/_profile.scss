@@ -22,8 +22,15 @@
     }
     .button {
       margin-left: 5vw;
-      height: fit-content;
+      width: fit-content;
+      margin-top: 1vh;
+      
+    }
+    &-controls{
       align-self: center;
+      display: flex;
+      flex-direction: column;
+      
     }
   }
   .position {
