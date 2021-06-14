@@ -13,7 +13,7 @@ const NavBar = () => {
         <div className="content">
           <h4>HR Manager</h4>
           <ul className="navBar-bottomSection_rightSection">
-            <Link href="/">
+            <Link href="/home">
               <li>Home</li>
             </Link>
             <Link href="./projects">

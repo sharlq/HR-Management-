@@ -2,9 +2,10 @@ import jwt from "jsonwebtoken";
 
 export default (req, res) => {
   let SECRET = process.env.REACT_APP_JWT_SECRET;
-  if (req.method === "POST") {
+  if (req.method === "GET") {
     let data = req.body;
-    jwt.verify(data.token, SECRET, (err, decoded) => {
+    let cookies =req.cookies;
+    jwt.verify(cookies.auth, SECRET, (err, decoded) => {
       if (decoded) {
         res.json({ verified: true,
                     name:decoded.name });

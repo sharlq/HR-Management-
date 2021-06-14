@@ -1,6 +1,7 @@
 import user from "../../Model/user";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import cookie from 'cookie'
 type userData = {
     _id:any,
   name: string;
@@ -27,7 +28,13 @@ export default async (req, res) => {
                 name:theUser.name
               };
             const token = jwt.sign(claims, JWT_SECRET,{expiresIn:"2d"});
-            res.json({ authToken: token });
+            res.setHeader('set-cookie', cookie.serialize('auth',token,{
+              httpOnly:true,
+              secure:false,
+              sameSite:'strict',
+              maxAge:3600*24*7,
+              path:'/'
+            })).json({authToken:true});
         } else {
             res.json({authToken:false})
         }

@@ -4,7 +4,7 @@ import {useSelector} from 'react-redux'
 import {selectToken} from '../../../redux/features/tokenSlice'
 import axios from 'axios'
 
-type inputState = string|boolean
+type inputState = string
 
 const UpdateProfile = () => {
 const [designation,setDesignation]=useState<inputState>("")
