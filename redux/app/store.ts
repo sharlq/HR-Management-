@@ -1,7 +1,7 @@
 import {configureStore} from '@reduxjs/toolkit'
-import tokenReducer from '../features/tokenSlice'
+import skillsReducer from '../features/skillsSlice'
 const store = configureStore({
-    reducer: tokenReducer
+    reducer: skillsReducer
 })
 
 
