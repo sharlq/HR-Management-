@@ -1,7 +1,7 @@
 import React from 'react'
 import TextField from "@material-ui/core/TextField";
 
-const AboutMe = () => {
+const AboutMe:React.FC<{aboutme:string}> = ({aboutme}) => {
     return (
         <div className="aboutMe">
         <h3 className="title">About Me</h3>
@@ -13,6 +13,7 @@ const AboutMe = () => {
           margin="normal"
           variant="outlined"
           multiline={true}
+          value={aboutme}
           rows="7"
           InputLabelProps={{
             shrink: true,

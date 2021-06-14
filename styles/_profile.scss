@@ -32,6 +32,14 @@
       flex-direction: column;
       
     }
+    &-imgName{
+      display: flex;
+      flex-direction: column;
+      align-items: center ;
+      .employeeName{
+        margin-top: 1vh;
+      }
+    }
   }
   .position {
     margin-top: 4vh;
@@ -56,6 +64,11 @@
     justify-content: space-between;
     margin-left: 2vw;
     margin-top: 4vh;
+    .skills-list{
+      display: flex;
+      flex-wrap: wrap;
+      
+    }
     .skills-paper {
       padding: 10px;
       border: 1px solid rgba(0, 0, 0, 0.1);
@@ -81,5 +94,9 @@
         }
       }
     }
+  }
+  input , textArea{
+    cursor: default;
+    caret-color: transparent;
   }
 }

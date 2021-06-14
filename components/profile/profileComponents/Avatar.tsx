@@ -1,14 +1,17 @@
 import React from 'react'
 import { Button } from "@material-ui/core";
 import Link from 'next/Link'
-const Avatar = () => {
+const Avatar:React.FC<{avatar:string,name:string}> = ({avatar,name}) => {
     return (
           <div className="avatarSection">
+        <div className="avatarSection-imgName">
         <div className="avatarSection-imageContainer">
           <img
             className="image"
-            src="https://deadline.com/wp-content/uploads/2016/05/spongebob.jpg"
+            src={"https://deadline.com/wp-content/uploads/2016/05/spongebob.jpg"||avatar}
           ></img>
+        </div>
+        <h1 className="employeeName">{name}</h1>
         </div>
         <div className ="avatarSection-controls">
         <div >

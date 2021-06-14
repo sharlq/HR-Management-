@@ -1,7 +1,5 @@
 import React,{useState} from 'react'
 import {TextField,Button} from "@material-ui/core";
-import {useSelector} from 'react-redux'
-import {selectToken} from '../../../redux/features/tokenSlice'
 import axios from 'axios'
 
 type inputState = string
@@ -13,24 +11,24 @@ const [skills,setSkills]=useState<inputState>("")
 const [reportingManager,setReportingManager]=useState<inputState>("")
 const [aboutme,setAboutme]=useState<inputState>("")
 
-const token = useSelector(selectToken)
+
 const handleSubmit = (e) =>{
   e.preventDefault();
   let skillsArray
-  if(skills===""){
+  if(skills!==""){
     //@ts-ignore
     skillsArray = skills.split(',')
   }else{
     skillsArray = ""
   }
-  axios.post('http://localhost:3000/api/updateProfile',{token:token,
+  axios.post('http://localhost:3000/api/updateProfile',{
   designation:designation,
   department:department,
   aboutme:aboutme,
   skills:skillsArray,
   reportingManager:reportingManager
 })
-console.log(token)
+console.log(skillsArray)
 }
     return (
         <div className="updateProfile">

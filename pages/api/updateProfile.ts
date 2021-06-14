@@ -4,7 +4,8 @@ export default (req, res) => {
   let SECRET = process.env.REACT_APP_JWT_SECRET;
   if (req.method === "POST") {
     let data = req.body;
-    jwt.verify(data.token, SECRET, async(err, decoded) => {
+    let cookies = req.cookies
+    jwt.verify(cookies.auth, SECRET, async(err, decoded) => {
       if (decoded) {
         if(data.designation!=="") {await user.updateOne({ name: decoded.name },{designation:data.designation},{upsert:true});
         console.log("designation")

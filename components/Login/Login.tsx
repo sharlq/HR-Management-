@@ -3,8 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Link from "next/Link";
 import axios from "axios";
-import {useDispatch} from "react-redux"
-import {setToken} from '../../redux/features/tokenSlice'
+
 import {Alert} from '@material-ui/lab';
 import { useRouter } from 'next/router'
 const Login = () => {
@@ -19,7 +18,7 @@ const Login = () => {
 
   const router = useRouter();
 
-  let dispatch = useDispatch()
+  
   
   const handleLogIn = async(e) => {
     e.preventDefault();
@@ -28,11 +27,6 @@ const Login = () => {
       password:passwordRef.current.value
     })
   if(authToken.data.authToken){
-    dispatch(
-      setToken({
-        token:authToken.data.authToken
-      })
-    )
     setLogInError(false)
     setLogInErrorMessage('')
     router.push('home')

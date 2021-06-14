@@ -3,12 +3,9 @@ import React ,{useState,useEffect} from 'react'
 import SideBar from '../../components/SideBar'
 import HomeContent from '../../components/Home/home'
 import axios from 'axios'
-import { useSelector } from 'react-redux'
-import { selectToken } from '../../redux/features/tokenSlice'
 import { useRouter } from 'next/router'
 
 export default function Home() {
- // let token = useSelector(selectToken);
   let items = ['PAGE 1','PAGE 2','PAGE 3']
   const [employeeName,setEmployeeName] = useState("")
 
