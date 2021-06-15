@@ -1,28 +1,52 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import Link from "next/Link";
+import axios from "axios";
+import { useRouter } from "next/router";
 const NavBar = () => {
+  const [isLogedInState,setIsLogInState] = useState(false)
+  const router = useRouter();
+  const isLogedin =  async()=>{
+    let logedIn = await axios.get('http://localhost:3000/api/verify')
+    if(logedIn.data.verified===true){
+     setIsLogInState(true)
+    }else{
+      setIsLogInState(false)
+    }
+  }
+
+  const logOut = async() => {
+    await axios.get('http://localhost:3000/api/logOut')
+    router.push('/')
+  }
+
+  useEffect(()=>{
+    isLogedin()
+  })
   return (
     <nav className="navBar">
       <div className="navBar-topSection">
         <div className="content">
           <h4>Company Name</h4>
-          <p>Log in</p>
+          {isLogedInState?<p style={{cursor:'pointer'}} onClick={()=>logOut()}>Log Out</p>:
+          <Link  href="/" replace={true}>
+          <p style={{cursor:'pointer'}}>Log In</p>
+          </Link>}
         </div>
       </div>
       <div className="navBar-bottomSection">
         <div className="content">
           <h4>HR Manager</h4>
           <ul className="navBar-bottomSection_rightSection">
-            <Link href="/home">
+            <Link href="/home" replace={true}>
               <li>Home</li>
             </Link>
-            <Link href="./projects">
+            <Link href="/projects" replace={true}>
               <li>Projects</li>
             </Link>
-            <Link href="./services">
+            <Link href="/services" replace={true}>
             <li>Services</li>
             </Link>
-            <Link href="./profile">
+            <Link href="/profile" replace={true}>
               <li>Profile</li>
             </Link>
           </ul>

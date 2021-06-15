@@ -25,7 +25,7 @@ const Bottom: React.FC<{ skills: string[]; reportingManager: string }> = ({
           <div className="skills-list">
             {skills &&
               skills.map((i, index) => (
-                <Skill //please fix me :")
+                <Skill
                   background={
                     backGroundcolors[
                       Math.round(

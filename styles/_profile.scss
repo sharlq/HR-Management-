@@ -67,7 +67,8 @@
     .skills-list{
       display: flex;
       flex-wrap: wrap;
-      
+      overflow: overlay;
+      height: 187px;
     }
     .skills-paper {
       padding: 10px;
@@ -83,6 +84,10 @@
         width: 150px;
         margin: 5px;
         border-radius: 4px;
+        max-height: 45px;
+        .delete{
+          cursor: pointer;
+        }
         .skill-taile {
           display: flex;
           .divider {
