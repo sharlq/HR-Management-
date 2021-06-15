@@ -15,9 +15,12 @@ const Avatar:React.FC<{avatar:string,name:string}> = ({avatar,name}) => {
         </div>
         <div className ="avatarSection-controls">
         <div >
-        <Button className="button" variant="contained" color="primary">
+        <input id="uploadImage" type="file" hidden multiple/>
+        <label htmlFor="uploadImage">
+        <Button className="button" variant="contained" component="span" color="primary">
           Upload new picture
         </Button>
+        </label>
         <Button className="button" variant="contained" color="secondary">
           Delete image
         </Button>
