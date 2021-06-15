@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState,useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Link from "next/Link";
@@ -19,6 +19,12 @@ const Login = () => {
   const router = useRouter();
 
   
+  const isLogedin =  async()=>{
+    let logedIn = await axios.get('http://localhost:3000/api/verify')
+    if(logedIn.data.verified===true){
+     router.push('/home')
+    }
+  }
   
   const handleLogIn = async(e) => {
     e.preventDefault();
@@ -33,10 +39,12 @@ const Login = () => {
   }else{
     setLogInError(true)
     setLogInErrorMessage('eather user name or password is wrong')
-  }
-    
+  } 
   };
 
+  useEffect(()=>{
+    isLogedin()
+  })
   return (
     <form className="login">
       
