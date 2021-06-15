@@ -5,13 +5,11 @@ export default (req,res)=>{
     let cookies = req.cookies
     let data = req.body
 if(req.method==="PATCH"){
-    console.log(data)
     jwt.verify(cookies.auth,SECRET,(err,decoded)=>{
         if(!err && decoded){
             users.findOne({_id:decoded.id},async(err,res)=>{
                  res.skills.splice(data.index,1)
                  let updatedSkills = res.skills
-                console.log(updatedSkills)
                await users.updateOne({_id:decoded.id},{skills:updatedSkills})
             })
         }

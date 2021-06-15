@@ -35,6 +35,7 @@ const Bottom: React.FC<{ skills: string[]; reportingManager: string }> = ({
                   }
                   skill={i.trim()}
                   index={index}
+                  array={skills}
                 />
               ))}
           </div>

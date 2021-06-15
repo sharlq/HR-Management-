@@ -19,7 +19,7 @@ const Profile = () => {
 
   useEffect(()=>{
     fetchProfile()
-    
+    console.log(reRenderSkills)
   },[reRenderSkills])
   useEffect(()=>{
     console.log(userProfile)

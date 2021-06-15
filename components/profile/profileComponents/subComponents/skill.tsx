@@ -3,14 +3,14 @@ import {Clear} from '@material-ui/icons';
 import axios from 'axios'
 import { useDispatch } from 'react-redux';
 import { setSkills } from '../../../../redux/features/skillsSlice';
-const Skill:React.FC<{skill:string,background:string,index:number,}> = ({skill,background,index}) => {
+const Skill:React.FC<{skill:string,background:string,index:number,array:string[]}> = ({skill,background,index,array}) => {
   
   let dispatch = useDispatch();
-  const handleDelete=()=>{
-   if( axios.patch('http://localhost:3000/api/deleteSkill',{index})){
+  const handleDelete= async()=>{
+    axios.patch('http://localhost:3000/api/deleteSkill',{index})
    //please fix me :")
-   dispatch(setSkills({skills:Math.random()}))}
-  
+   dispatch(setSkills({skills:Math.random()}))
+    array.splice(index,1)
 
 
   
