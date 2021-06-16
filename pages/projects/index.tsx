@@ -3,8 +3,9 @@ import Projects from "../../components/projects/Projects";
 import SideBar from '../../components/projects/SideBar'
 import PopUpAddProject from "../../components/projects/PopUpAddProject";
 const Index = () => {
-  const [trigger,setTrigger] = useState(true)
+  const [trigger,setTrigger] = useState(false)
   const handleAddProject =()=>{
+    
         setTrigger((prev)=>!prev)
   }
   return (
