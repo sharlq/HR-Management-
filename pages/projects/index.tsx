@@ -1,14 +1,19 @@
-import React from "react";
+import React,{useState} from "react";
 import Projects from "../../components/projects/Projects";
-import SideBar from '../../components/SideBar'
+import SideBar from '../../components/projects/SideBar'
+import PopUpAddProject from "../../components/projects/PopUpAddProject";
 const Index = () => {
-    let items =['project 1', ' project 2', 'project 3']
+  const [trigger,setTrigger] = useState(true)
+  const handleAddProject =()=>{
+        setTrigger((prev)=>!prev)
+  }
   return (
-    <div>
+    <div className="projectsPage">
       <div className="mainContent">
-        <SideBar items={items} />
+        <SideBar handleTrigger={handleAddProject}  />
         <Projects />
       </div>
+        <PopUpAddProject handleTrigger={handleAddProject} trigger={trigger} />
     </div>
   );
 };

@@ -41,3 +41,69 @@
         }
     }
 }
+
+///////////////////////@at-root
+
+.projectsSide{
+    margin-top: 4vh;
+    margin-left: 2vw;
+    flex: .25;
+    &-title{
+    width: inherit;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+    ul{
+        margin-top: 2vh;
+        margin-left: 1vw;
+        li{
+            margin-top: 1vh;
+            background: white;
+            border-radius: 5px;
+            padding: 10px;
+            list-style: none;
+            box-shadow: 1px 1px 4px rgba(0, 0, 0, .3);
+
+        }
+    }
+}
+
+.popUp{
+    background: rgba(0, 0, 0, 0.83);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 2;
+   top:0;
+   left: 0;
+   display: flex;
+   
+   &-form{
+       margin: auto;
+       background-color: white;
+       width: 50vw;
+       height: fit-content;
+       padding: 50px;
+       border-radius: 15px;
+       display: flex;
+       flex-direction: column;
+       align-content: center;
+       &_input{
+           margin-top: 2vh !important;
+       }
+       h2{
+           width: fit-content;
+           align-self: center;
+       }
+       &_button{
+           margin-top: 2vh !important;
+           
+       }
+   }
+}
+
+.projectsPage{
+    overflow: hidden;
+    
+}
