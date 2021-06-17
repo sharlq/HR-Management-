@@ -58,14 +58,29 @@
         margin-top: 2vh;
         margin-left: 1vw;
         li{
-            margin-top: 1vh;
+           // margin-top: 1vh;
             background: white;
-            border-radius: 5px;
+            
             padding: 10px;
             list-style: none;
-            box-shadow: 1px 1px 4px rgba(0, 0, 0, .3);
-
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            width:200px
         }
+        .stamp{
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+           // background-color: white;
+            width: 10px;
+        }
+        .singleProject{
+            display: flex;
+            box-shadow: 1px 1px 4px rgba(0, 0, 0, .3);
+            margin-top: 1vh;
+            
+            border-radius: 5px;
+        }
+    
     }
 }
 
