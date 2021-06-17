@@ -1,21 +1,49 @@
-import React from 'react'
-import axios from 'axios'
+import React,{useState,useEffect} from 'react'
 import AddIcon from '@material-ui/icons/Add';
 
-const SideBar:React.FC<{handleTrigger:any}> = ({handleTrigger}) => {
-    
-    
-    
-    
+type projectObj={
+    _id:string,
+    projectName:string,
+    projectDepartment:string,
+    projectManager:string,
+    team:[string],
+    toDo:[],
+    doing:[],
+    done:[]
+}
+const SideBar:React.FC<{handleTrigger:any,projects:[projectObj]}> = ({handleTrigger,projects}) => {
+    const [colorTheStamp,setColorTheStamp] = useState<{}>()
+    let stampColor={
+
+    }
+    if(projects){
+    for(let i =0 ; i< projects.length;i++){
+        stampColor[`${projects[i]._id}`]='white'
+    }}
+    const handleChoseProject =(id)=>{
+        for(let i in stampColor){
+            if(id === i ){
+                stampColor[i]='royalblue'
+            }else{
+                stampColor[i]='white'
+            }
+        }
+        
+        setColorTheStamp(stampColor)
+    }
+    useEffect(()=>{
+        if(projects){
+ setColorTheStamp(stampColor)}
+    },[projects])
     return (
+        //connect teh list elements wiht the state
         <aside className="projectsSide">
             <div className="projectsSide-title">
             <h2>Projects </h2> <AddIcon style={{cursor:'pointer'}} onClick={()=>handleTrigger()}/>
             </div>
             <ul>
-            <li>Project 1</li>
-            <li>Project 2</li>
-            <li>Project 3</li>
+            {projects && projects.map(i=><div className="singleProject" onClick={()=>handleChoseProject(i._id)} ><div className="stamp" //@ts-ignore
+            style={{background:colorTheStamp[`${i._id}`]}}/><li className="chosen">{i.projectName}</li></div>)}
             </ul>
         </aside>
     )

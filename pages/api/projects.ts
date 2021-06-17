@@ -26,8 +26,9 @@ export default (req,res) =>{
         jwt.verify(cookies.auth,SECRET,(err,decoded)=>{
             if(!err && decoded){
             project.find({},(err,docs)=>{
-                let usersProjects = docs.filter((i)=> decoded.name in i.team)
+                let usersProjects = docs.filter((i)=> i.team.includes(decoded.name) )
                 res.send(usersProjects)
+              
             })}
         })
         
