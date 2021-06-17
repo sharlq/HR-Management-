@@ -21,4 +21,15 @@ export default (req,res) =>{
             }
         })
     }
+    if(req.method==="GET"){
+        let cookies = req.cookies
+        jwt.verify(cookies.auth,SECRET,(err,decoded)=>{
+            if(!err && decoded){
+            project.find({},(err,docs)=>{
+                let usersProjects = docs.filter((i)=> decoded.name in i.team)
+                res.send(usersProjects)
+            })}
+        })
+        
+    }
 }

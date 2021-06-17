@@ -1,8 +1,7 @@
-import React from "react";
+import React,{useEffect} from "react";
 import Tasks from "./tasks";
 import Task from "./Task";
 const Projects = () => {
-
 
   return (
     <div className="projects">
