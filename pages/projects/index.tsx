@@ -1,12 +1,14 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import Projects from "../../components/projects/Projects";
 import SideBar from '../../components/projects/SideBar'
 import PopUpAddProject from "../../components/projects/PopUpAddProject";
 const Index = () => {
   const [trigger,setTrigger] = useState(false)
   const handleAddProject =()=>{
-    
         setTrigger((prev)=>!prev)
+  }
+  const handleFetchProjects = ()=> {
+    
   }
   return (
     <div className="projectsPage">

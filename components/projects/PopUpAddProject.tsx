@@ -3,6 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import {Button} from '@material-ui/core'
 import axios from 'axios';
 import Alert from '@material-ui/lab/Alert';
+ 
 const PopUpAddProject:React.FC<{trigger:boolean,handleTrigger:any}> = ({trigger,handleTrigger}) => {
     const [name,setName]=useState<string>()
     const [department,setDepartment]=useState<string>()
@@ -10,6 +11,18 @@ const PopUpAddProject:React.FC<{trigger:boolean,handleTrigger:any}> = ({trigger,
   //  const [team,setTeam]=useState<string>()
     const [error,setError]=useState<boolean>(false)
     const [errorMessage,setErrorMessage]=useState<string>("")
+
+    let opacity:string , visibility:"visible"|"hidden"
+    if(trigger){
+        visibility='visible'
+        opacity='1'
+    } else{
+        visibility='hidden'
+        opacity='0'
+        
+    }
+    
+
     const   handleAddProject = async()=>{
         if(name&&department&&manager){
             setError(false)
@@ -26,10 +39,10 @@ const PopUpAddProject:React.FC<{trigger:boolean,handleTrigger:any}> = ({trigger,
         }
     }
     return (
-        trigger?
+       
            
-           (<div className="popUp" onClick={()=>handleTrigger()}>
-            <div className="popUp-form"  onClick={(e)=>e.stopPropagation()}>
+           <div className="popUp" style={{visibility:visibility,opacity:opacity}} onClick={()=>handleTrigger()}>
+            <div  className="popUp-form" style={{visibility:visibility,opacity:opacity}} onClick={(e)=>e.stopPropagation()}>
             <h2>Create new Project</h2>
             {error && <Alert severity="error">{errorMessage}</Alert>}
             <TextField value={name} onChange={(e)=>setName(e.target.value)} className="popUp-form_input" id="outlined-basic" label="Project Name" variant="outlined" />
@@ -38,10 +51,9 @@ const PopUpAddProject:React.FC<{trigger:boolean,handleTrigger:any}> = ({trigger,
             {/* <TextField value={team} onChange={(e)=>setTeam(e.target.value)} className="popUp-form_input" id="outlined-basic" label="Project Team" variant="outlined" /> */}
             <Button variant="contained"color="primary" className="popUp-form_button" onClick={()=>handleAddProject()} > Create </Button>
             </div>
-        </div>)
+        </div>
         
-        :
-        (null)
+      
         
     )
 }
