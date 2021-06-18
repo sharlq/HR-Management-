@@ -6,6 +6,7 @@ import axios from "axios";
 const Index = () => {
   const [trigger,setTrigger] = useState(false)
   const [projects,setProjects] = useState<any>()
+  const [project,setProject] = useState()
   const handleAddProject =()=>{
         setTrigger((prev)=>!prev)
   }
@@ -20,7 +21,7 @@ const Index = () => {
   return (
     <div className="projectsPage">
       <div className="mainContent">
-        <SideBar handleTrigger={handleAddProject} projects={projects}  />
+        <SideBar handleTrigger={handleAddProject} projects={projects}  setProject={setProject} />
         <Projects />
       </div>
         <PopUpAddProject handleTrigger={handleAddProject} trigger={trigger} />

@@ -11,7 +11,7 @@ type projectObj={
     doing:[],
     done:[]
 }
-const SideBar:React.FC<{handleTrigger:any,projects:[projectObj]}> = ({handleTrigger,projects}) => {
+const SideBar:React.FC<{handleTrigger:any,projects:[projectObj],setProject:any}> = ({handleTrigger,projects,setProject}) => {
     const [colorTheStamp,setColorTheStamp] = useState<{}>()
     let stampColor={
 
@@ -23,12 +23,13 @@ const SideBar:React.FC<{handleTrigger:any,projects:[projectObj]}> = ({handleTrig
     const handleChoseProject =(id)=>{
         for(let i in stampColor){
             if(id === i ){
-                stampColor[i]='royalblue'
+                stampColor[i]='royalbluegit'
             }else{
                 stampColor[i]='white'
             }
         }
-        
+        let theChosenOne = projects.filter((i)=>i._id===id)
+        setProject(theChosenOne)
         setColorTheStamp(stampColor)
     }
     useEffect(()=>{
