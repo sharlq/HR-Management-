@@ -1,7 +1,10 @@
 import React,{useEffect} from "react";
 import Tasks from "./tasks";
 import Task from "./Task";
-const Projects:React.FC<{project:any}> = ({project}) => {
+
+const Projects:React.FC= () => {
+
+
 
   return (
     <div className="projects">

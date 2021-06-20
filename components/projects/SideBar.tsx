@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import AddIcon from "@material-ui/icons/Add";
-
+import {useSelector} from 'react-redux'
+import {selectProjects} from '../../redux/features/projectsSlice'
+import {useDispatch} from 'react-redux'
+import  {getSelectedProject} from '../../redux/features/projectsSlice' 
 type projectObj = {
   _id: string;
   projectName: string;
@@ -13,35 +16,40 @@ type projectObj = {
 };
 const SideBar: React.FC<{
   handleTrigger: any;
-  projects: [projectObj];
-  setProject: any;
-}> = ({ handleTrigger, projects, setProject }) => {
-  const [colorTheStamp, setColorTheStamp] = useState<{}>();
-  let stampColor = {};
-  
-    
-  
+}> = ({ handleTrigger }) => {
+  const [classTheStamp, setClassTheStamp] = useState<{}>();
+  const dispatch = useDispatch();
+  const projects = useSelector(selectProjects)
+  console.log(projects,"hmm")
+  let stampClasses = {};
+
+  if (projects) {
+    for (let i = 0; i < projects.length; i++) {
+      stampClasses[`${projects[i]._id}`] = "stamp";
+    }
+  }
+
   const handleChoseProject = (id) => {
-    for (let i in stampColor) {
+    for (let i in stampClasses) {
       if (id === i) {
-        stampColor[i] = "royalbluegit";
+        stampClasses[i] = "stamp active";
       } else {
-        stampColor[i] = "white";
+        stampClasses[i] = "stamp";
       }
     }
     let theChosenOne = projects.filter((i) => i._id === id);
-    setProject(theChosenOne);
-    setColorTheStamp(stampColor);
+    dispatch(getSelectedProject(theChosenOne));
+    setClassTheStamp(stampClasses);
+    console.log(id)
   };
+
+
   useEffect(() => {
-      if(projects){
-    for (let i = 0; i < projects.length; i++) {
-        stampColor[`${projects[i]._id}`] = "white";
-      }
-      setColorTheStamp(stampColor);}
-  }, []);
+    setClassTheStamp(stampClasses);
+  }, [projects]);
+
+
   return (
-    //connect teh list elements wiht the state
     <aside className="projectsSide">
       <div className="projectsSide-title">
         <h2>Projects </h2>{" "}
@@ -51,17 +59,20 @@ const SideBar: React.FC<{
         />
       </div>
       <ul>
-        {projects &&
+        {
+          classTheStamp && projects &&
           projects.map((i) => (
-            <div
+            <div key={`container ${i._id}`}
               className="singleProject"
               onClick={() => handleChoseProject(i._id)}
             >
-              <div
-                className="stamp" //@ts-ignore
-                style={{ background: colorTheStamp[`${i._id}`] }}
+              <div key={`stamp ${i._id}`}
+                className={classTheStamp[`${i._id}`]}
+                
               />
-              <li className="chosen">{i.projectName}</li>
+              <li
+              key={`item ${i._id}`}             
+             className="chosen">{i.projectName}</li>
             </div>
           ))}
       </ul>
