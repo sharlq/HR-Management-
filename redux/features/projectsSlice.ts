@@ -4,7 +4,7 @@ const projectsSlice = createSlice({
     name:'projectsReducer',
     initialState:{
         projects:[],
-        selectedProject:{},
+        selectedProject:null,
         triggerAddTask:false,
         taskCatigory:''
     },

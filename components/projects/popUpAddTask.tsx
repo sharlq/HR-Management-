@@ -30,11 +30,11 @@ const PopUpAddProject:React.FC<{}> = () => {
     
 
     const   handleAddTask = async()=>{
-        if(name&&description&&team&&project[0]){
+        if(name&&description&&team&&project){
             setError(false)
             setErrorMessage("")
          axios.put('http://localhost:3000/api/projects',{
-            projectId:project[0]._id,
+            projectId:project._id,
             catigory:catigory,
             TaskName:name,
             TaskDescription:description,
@@ -42,7 +42,7 @@ const PopUpAddProject:React.FC<{}> = () => {
         })
          dispatch(triggerAddTaskPopUp({}))
          //@ts-ignore
-        }else if(!project[0]){
+        }else if(!project){
             setError(true)
             setErrorMessage("Select Project")
         }else{
