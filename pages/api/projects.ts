@@ -33,4 +33,8 @@ export default (req,res) =>{
         })
         
     }
+    if(req.method === "PUT"){
+        let data = req.body
+        
+    }
 }

@@ -4,7 +4,9 @@ const projectsSlice = createSlice({
     name:'projectsReducer',
     initialState:{
         projects:[],
-        selectedProject:{}
+        selectedProject:{},
+        triggerAddTask:false,
+        taskCatigory:''
     },
     reducers:{
         getProjects(state,action){
@@ -12,11 +14,19 @@ const projectsSlice = createSlice({
         },
         getSelectedProject(state,action){
             state.selectedProject = action.payload
+        },
+        triggerAddTaskPopUp(state,action){
+            state.triggerAddTask = !state.triggerAddTask
+        },
+        getTaskCatigory(state,action){
+            state.taskCatigory = action.payload
         }
     }
 })
 
-export const {getProjects,getSelectedProject} = projectsSlice.actions
+export const {getProjects,getSelectedProject,triggerAddTaskPopUp,getTaskCatigory} = projectsSlice.actions
 export const selectProjects = (state:RootState) => state.projectsReducer.projects
 export const selectSelectedProject =(state:RootState) => state.projectsReducer.selectedProject
+export const selectAddTaskTrigger = (state:RootState) => state.projectsReducer.triggerAddTask
+export const taskCatigory = (state:RootState) => state.projectsReducer.taskCatigory
 export default projectsSlice.reducer
