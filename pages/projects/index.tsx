@@ -3,7 +3,7 @@ import Projects from "../../components/projects/Projects";
 import SideBar from '../../components/projects/SideBar'
 import PopUpAddProject from "../../components/projects/PopUpAddProject";
 import {useDispatch} from "react-redux";
-
+import PopUpAddTask from '../../components/projects/popUpAddTask'
 const Index = () => {
   const [trigger,setTrigger] = useState(false)
 
@@ -22,6 +22,7 @@ const Index = () => {
          <Projects /> 
       </div>
         <PopUpAddProject handleTrigger={handleAddProject} trigger={trigger} />
+        <PopUpAddTask />
     </div>
   );
 };
