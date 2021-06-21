@@ -4,16 +4,7 @@ import {useSelector} from 'react-redux'
 import {selectProjects} from '../../redux/features/projectsSlice'
 import {useDispatch} from 'react-redux'
 import  {getSelectedProject} from '../../redux/features/projectsSlice' 
-type projectObj = {
-  _id: string;
-  projectName: string;
-  projectDepartment: string;
-  projectManager: string;
-  team: [string];
-  toDo: [];
-  doing: [];
-  done: [];
-};
+
 const SideBar: React.FC<{
   handleTrigger: any;
 }> = ({ handleTrigger }) => {
@@ -38,9 +29,9 @@ const SideBar: React.FC<{
       }
     }
     let theChosenOne = projects.filter((i) => i._id === id);
-    dispatch(getSelectedProject(theChosenOne));
+    dispatch(getSelectedProject(theChosenOne[0]));
     setClassTheStamp(stampClasses);
-    console.log(id)
+    console.log(id,theChosenOne[0])
   };
 
 
