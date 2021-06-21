@@ -19,10 +19,10 @@ const tasks:React.FC<{title:string,children?:any}>  = ({title,children}) => {
     
     const project:projectObj|{} = useSelector(selectSelectedProject)
     const dispatch =useDispatch()
+    
     const handlePopUpAddTask =()=>{
-        dispatch(getTaskCatigory({catigory}))
+        dispatch(getTaskCatigory(catigory))
       dispatch(triggerAddTaskPopUp({}))
-      console.log(catigory)
     }
     let cards
     let catigory

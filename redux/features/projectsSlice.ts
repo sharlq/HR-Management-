@@ -28,5 +28,5 @@ export const {getProjects,getSelectedProject,triggerAddTaskPopUp,getTaskCatigory
 export const selectProjects = (state:RootState) => state.projectsReducer.projects
 export const selectSelectedProject =(state:RootState) => state.projectsReducer.selectedProject
 export const selectAddTaskTrigger = (state:RootState) => state.projectsReducer.triggerAddTask
-export const taskCatigory = (state:RootState) => state.projectsReducer.taskCatigory
+export const selectTaskCatigory = (state:RootState) => state.projectsReducer.taskCatigory
 export default projectsSlice.reducer
