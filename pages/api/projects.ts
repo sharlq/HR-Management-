@@ -70,4 +70,8 @@ export default async (req, res) => {
           });
     }
   }
+  if(req.method==="DELETE"){
+    let projectId= req.query.projectId
+   await project.deleteOne({_id:projectId})
+  }
 };
