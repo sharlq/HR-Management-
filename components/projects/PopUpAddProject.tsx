@@ -33,6 +33,7 @@ const PopUpAddProject:React.FC<{trigger:boolean,handleTrigger:any}> = ({trigger,
             projectManager:manager
         })
          handleTrigger()
+         window.location.reload()
         }else{
             setError(true)
             setErrorMessage("fill all the fields")
