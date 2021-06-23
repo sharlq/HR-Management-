@@ -41,7 +41,6 @@ export default async (req, res) => {
     };
 
     if (data.catigory === "toDo") {
-      console.log("HAIL SHEHAB");
       project.findOne({ _id: data.projectId }, async (err, result) => {
         if (!err && result) {
           let array = result.toDo.concat(task);
@@ -49,6 +48,7 @@ export default async (req, res) => {
         }else{
             res.send("the project doseent exist")
         }
+        res.send(data)
       });
     }else if(data.catigory === "doing"){
         project.findOne({ _id: data.projectId }, async (err, result) => {
@@ -58,6 +58,7 @@ export default async (req, res) => {
             }else{
                 res.send("the project doseent exist")
             }
+            res.send(data)
           });
     }else if(data.catigory === "done"){
         project.findOne({ _id: data.projectId }, async (err, result) => {
@@ -67,6 +68,7 @@ export default async (req, res) => {
             }else{
                 res.send("the project doseent exist")
             }
+            res.send(data)
           });
     }
   }
