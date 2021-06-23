@@ -2,9 +2,9 @@ import React from 'react'
 import ClearIcon from '@material-ui/icons/Clear';
 import axios from 'axios';
 import {useSelector,useDispatch} from 'react-redux';
-import { selectSelectedProject,getSelectedProject } from '../../redux/features/projectsSlice';
+import { selectSelectedProject } from '../../redux/features/projectsSlice';
 const Task:React.FC<{title:string,description:string,team:string,id:string,catigory:string,handleDeleteTask:any}> = ({title,description,team,id,catigory,handleDeleteTask}) => {
-    const dispatch = useDispatch();
+    
     let project = useSelector(selectSelectedProject)
     const handleDelete =async()=>{
     axios.delete(`http://localhost:3000/api/tasks?id=${id}&project=${project._id}&catigory=${catigory}`)
