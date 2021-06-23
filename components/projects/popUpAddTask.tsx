@@ -4,7 +4,7 @@ import {Button} from '@material-ui/core'
 import axios from 'axios';
 import Alert from '@material-ui/lab/Alert';
 import { useSelector,useDispatch } from 'react-redux';
-import { selectAddTaskTrigger,triggerAddTaskPopUp,selectSelectedProject,selectTaskCatigory } from '../../redux/features/projectsSlice';
+import { selectAddTaskTrigger,triggerAddTaskPopUp,selectSelectedProject,selectTaskCatigory,getSelectedProject } from '../../redux/features/projectsSlice';
 
 
 const PopUpAddProject:React.FC<{}> = () => {
@@ -33,14 +33,25 @@ const PopUpAddProject:React.FC<{}> = () => {
         if(name&&description&&team&&project){
             setError(false)
             setErrorMessage("")
-         axios.put('http://localhost:3000/api/projects',{
+        axios.put('http://localhost:3000/api/projects',{
             projectId:project._id,
             catigory:catigory,
             TaskName:name,
             TaskDescription:description,
             TaskTeam:team
         })
+        let dummyProject ={...project}
+        dummyProject[`${catigory}`] =  dummyProject[`${catigory}`].concat({
+            _id:"dummyId",
+            description,
+            team,
+            title:name
+        })
+         dispatch(getSelectedProject(dummyProject))
          dispatch(triggerAddTaskPopUp({}))
+         setName('')
+         setDescription('')
+         setTeam('')
          //@ts-ignore
         }else if(!project){
             setError(true)
@@ -49,8 +60,7 @@ const PopUpAddProject:React.FC<{}> = () => {
             setError(true)
             setErrorMessage("fill all the fields")
         }
-        console.log(catigory)
-        console.log(project)
+   
     }
     return (
        
