@@ -5,6 +5,7 @@ import {
   selectSelectedProject,
   triggerAddTaskPopUp,
   getTaskCatigory,
+  getSelectedProject
 } from "../../redux/features/projectsSlice";
 import Task from "./Task";
 
@@ -30,6 +31,12 @@ const tasks: React.FC<{ title: string; children?: any }> = ({
     dispatch(getTaskCatigory(catigory));
     dispatch(triggerAddTaskPopUp({}));
   };
+  const handleDeleteTask = (taskId,projectCatigory) =>{
+    let filteredTasks = project[`${projectCatigory}`].filter((i)=>i._id!=taskId)
+    let dummyProject = {...project}
+    dummyProject[`${projectCatigory}`] = filteredTasks
+    dispatch(getSelectedProject(dummyProject))
+  }
   let catigory;
   if (project) {
     if (title === "To Do") {
@@ -57,6 +64,7 @@ const tasks: React.FC<{ title: string; children?: any }> = ({
             title={card.title}
             description={card.description}
             team={card.team}
+            handleDeleteTask={handleDeleteTask}
           />
         ))}
     </div>
