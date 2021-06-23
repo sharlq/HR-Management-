@@ -1,7 +1,7 @@
 import React from 'react'
 import ClearIcon from '@material-ui/icons/Clear';
 import axios from 'axios';
-import {useSelector,useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 import { selectSelectedProject } from '../../redux/features/projectsSlice';
 const Task:React.FC<{title:string,description:string,team:string,id:string,catigory:string,handleDeleteTask:any}> = ({title,description,team,id,catigory,handleDeleteTask}) => {
     
@@ -17,7 +17,7 @@ const Task:React.FC<{title:string,description:string,team:string,id:string,catig
             <ClearIcon style={{cursor:'pointer'}} onClick={()=>handleDelete()}/>
             </div>
             <p className="task-description">{description}</p>
-            <div className="task-team">{team}</div>
+            <div className="task-team">team: {team}</div>
         </div>
     )
 }
