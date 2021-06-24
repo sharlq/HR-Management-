@@ -30,7 +30,7 @@ useEffect(()=>{
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="mainContent">
-      <SideBar items={items}/>
+      
       <HomeContent employeeName={employeeName}/>
       </div>
     </div>
