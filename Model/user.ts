@@ -37,6 +37,10 @@ let MODEL_NAME = 'User'
             type:String,
             required:false
         },
+        rank:{
+            type:String,
+            required:false
+        }
  })
 
  export default mongoose.models[MODEL_NAME] || mongoose.model(MODEL_NAME, user,'Users')

@@ -4,9 +4,13 @@ import SideBar from '../../components/SideBar'
 import HomeContent from '../../components/Home/home'
 import axios from 'axios'
 import { useRouter } from 'next/router'
-
+import { useDispatch,useSelector } from 'react-redux'
+import { setRank,selectRank } from '../../redux/features/userSlice'
 export default function Home() {
   let items = ['PAGE 1','PAGE 2','PAGE 3']
+  const dispatch = useDispatch()
+
+  const rank =useSelector(selectRank)
   const [employeeName,setEmployeeName] = useState("")
 
   const router = useRouter();
@@ -21,6 +25,7 @@ export default function Home() {
   }
 useEffect(()=>{
   verify()
+  dispatch(setRank({}))
 },[])
   return (
     <div className="root">
@@ -30,7 +35,7 @@ useEffect(()=>{
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="mainContent">
-      
+      {rank&& <SideBar items={items}/> }
       <HomeContent employeeName={employeeName}/>
       </div>
     </div>
