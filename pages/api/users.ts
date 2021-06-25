@@ -19,6 +19,7 @@ export default async (req, res) => {
           name: data.name,
           email: data.email,
           password: hash,
+          rank:'normal'
         });
       });
       res.status(201).send("ok");
