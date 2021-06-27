@@ -9,5 +9,9 @@ export default (req,res) =>{
                 res.status(200).send("leave request waiting approval")
             }
         })
+    }else if(req.method==="GET"){
+        leave.find({},(err,result)=>{
+            res.send(result)
+        })
     }
 }
