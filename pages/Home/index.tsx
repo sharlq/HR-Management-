@@ -35,7 +35,7 @@ useEffect(()=>{
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="mainContent">
-      {rank&& <SideBar items={items}/> }
+      {rank==="topManagement"? <SideBar items={items}/>:null }
       <HomeContent employeeName={employeeName}/>
       </div>
     </div>

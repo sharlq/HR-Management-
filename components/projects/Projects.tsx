@@ -3,6 +3,7 @@ import Tasks from "./tasks";
 import { useSelector } from "react-redux";
 import { selectSelectedProject } from "../../redux/features/projectsSlice";
 import ClearIcon from '@material-ui/icons/Clear';
+import AddIcon from '@material-ui/icons/Add';
 import axios from "axios";
 
 const Projects:React.FC= () => {
@@ -14,6 +15,7 @@ const handleDeleteProject= ()=>{
 
   return (
     <div className="projects">
+      <div>
      {project? 
      <div className="projects-title" >
       <h3>{project.projectName}</h3>
@@ -26,6 +28,14 @@ const handleDeleteProject= ()=>{
         <Tasks title={"To Do"}/>
         <Tasks title={"Doing"}/>
         <Tasks title={"Done"} />
+      </div>
+      </div>
+      <div className="projects-team">
+        <div className="projects-team_header">
+        <h4>Project Team</h4> 
+        <AddIcon/>
+        </div>
+        team member1, team member2
       </div>
     </div>
   );
