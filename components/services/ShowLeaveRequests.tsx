@@ -11,7 +11,7 @@ const ShowLeaveRequests= () => {
         fetchRequests()
     },[])
     return (
-        <div>
+        <div className="cardsContainer">
                {requests&& requests.map((i)=><RequestForm name={i.naem} department={i.department} days={i.numberOfDays} leaveType={i.leaveType} reasonOfLeave={i.reasonOfLeave} informedManager={true}/>)}     
         </div>
     )

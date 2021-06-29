@@ -5,7 +5,7 @@ const Index = () => {
     return (
         <div className="mainContent">
         <SideBar />
-       <ShowLeaveRequests/>
+        <ShowLeaveRequests/>
       </div>
     )
 }
