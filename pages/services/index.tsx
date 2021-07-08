@@ -1,15 +1,11 @@
 import React from 'react'
-import LeaveRequest from '../../components/services/LeaveRequest'
-import SideBar from '../../components/services/SideBar'
-const Index = () => {
+import Services from '../../components/services/services'
+const index = () => {
     return (
-    
-      <div className="mainContent">
-        <SideBar />
-       <LeaveRequest/>
-      </div>
-    
+        <div className="mainContent">
+            <Services />
+        </div>
     )
 }
 
-export default Index
+export default index
