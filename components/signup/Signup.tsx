@@ -16,6 +16,7 @@ const Signup = () => {
 
   const [signInError,setSignInError] = useState<boolean>(false)
   const [signInErrorMessage,setSignInErrorMessage] = useState<string>("")
+  
   const handleSubmit = async(e)=>{
     e.preventDefault
     if(passwordRef.current.value === repPasswordRef.current.value && emailRef.current.value && userNameRef.current.value ){
@@ -27,11 +28,12 @@ const Signup = () => {
       password:passwordRef.current.value,
       email:emailRef.current.value
       })
-      console.log(postAndCheck)
+      
     if(postAndCheck.data==="this user name is already used" ||postAndCheck.data==="this email is already used"){
       setSignInError(true)
       setSignInErrorMessage(postAndCheck.data)
     }
+
   } else if(passwordRef.current.value !== repPasswordRef.current.value){
       setSignInError(true)
       setSignInErrorMessage("password do not match")
@@ -48,9 +50,13 @@ const Signup = () => {
 
   return (
     <div className="signup">
+
       <h3>Sign Up</h3>
+
       {signInError && <Alert className="alert" severity="error">{signInErrorMessage}</Alert>}
+      
       <form className="signup-form" >
+
         <TextField
           inputRef={userNameRef}
           className="signup-input"
@@ -67,7 +73,6 @@ const Signup = () => {
          value={email}
           onChange={e=>setEmail(e.target.value)}
            />
-         
         <TextField
           inputRef={passwordRef}
           className="signup-input"
@@ -76,7 +81,6 @@ const Signup = () => {
           variant="outlined"
           value={password}
           onChange={e=>setPassword(e.target.value)}
-          
         />
         <TextField
           inputRef={repPasswordRef}
@@ -86,12 +90,14 @@ const Signup = () => {
           variant="outlined"
           value={repPassword}
           onChange={e=>setRepPassword(e.target.value)}
-          
         />
+
         <Button onClick={(e)=>handleSubmit(e)}  className="signup-btn" variant="contained" color="primary">
           SIGN UP
         </Button>
+
       </form>
+      
     </div>
   );
 };

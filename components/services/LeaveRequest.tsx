@@ -6,6 +6,7 @@ import axios from "axios";
 type groupBtn = "default" | "primary";
 
 const LeaveRequest = () => {
+
   const [yesColor, setYesColor] = useState<groupBtn>("default");
   const [noColor, setNoColor] = useState<groupBtn>("primary");
 
@@ -15,16 +16,19 @@ const LeaveRequest = () => {
   const [type, setType] = useState<string>("");
   const [reason, setReason] = useState<string>("");
   const [manager, setManager] = useState<boolean>(false);
+
   const handleYes = () => {
     setYesColor("primary");
     setNoColor("default");
     setManager(true);
   };
+
   const handleNo = () => {
     setYesColor("default");
     setNoColor("primary");
     setManager(false);
   };
+
   const handleSubmit = async () => {
     await axios.post("http://localhost:3000/api/leaveRequest", {
       name: name,
@@ -35,10 +39,14 @@ const LeaveRequest = () => {
       informedManager: manager,
     });
   };
+
   return (
     <div className="leaveRequest">
+
       <h3 className="leaveRequest-title">Leave Request</h3>
+
       <form className="leaveRequest-form">
+
         <TextField
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -63,8 +71,10 @@ const LeaveRequest = () => {
           label="Leave Type"
           variant="outlined"
         />
+
         <div>
           <h4>Have you informed your manager?</h4>
+
           <ButtonGroup
             className="btnGroup"
             color="default"
@@ -85,7 +95,9 @@ const LeaveRequest = () => {
               NO
             </Button>
           </ButtonGroup>
+
         </div>
+
         <TextField
           value={reason}
           onChange={(e) => setReason(e.target.value)}
@@ -100,7 +112,9 @@ const LeaveRequest = () => {
         >
           Apply
         </Button>
+
       </form>
+      
     </div>
   );
 };

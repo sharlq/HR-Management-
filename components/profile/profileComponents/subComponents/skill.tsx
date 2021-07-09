@@ -9,10 +9,11 @@ const Skill: React.FC<{
   index: number;
   array: string[];
 }> = ({ skill, background, index, array }) => {
+
   let dispatch = useDispatch();
+
   const handleDelete = async () => {
     axios.patch("http://localhost:3000/api/deleteSkill", { index });
-
     dispatch(setSkills({ skills: Math.random() }));
     array.splice(index, 1);
   };

@@ -1,10 +1,16 @@
 import jwt from "jsonwebtoken";
 import project from "../../Model/project";
+
 export default async (req, res) => {
+
   let SECRET = process.env.REACT_APP_JWT_SECRET;
+
+
   if (req.method === "POST") {
+
     let data = req.body;
     let cookies = req.cookies;
+
     jwt.verify(cookies.auth, SECRET, (err, decoded) => {
       if (!err && decoded) {
         project.create({
@@ -20,9 +26,14 @@ export default async (req, res) => {
         res.send("Sign In");
       }
     });
+
+
   }
-  if (req.method === "GET") {
+
+  else if (req.method === "GET") {
+
     let cookies = req.cookies;
+
     jwt.verify(cookies.auth, SECRET, (err, decoded) => {
       if (!err && decoded) {
         project.find({}, (err, docs) => {
@@ -30,9 +41,13 @@ export default async (req, res) => {
           res.send(usersProjects);
         });
       }
+
     });
+
+
   }
-  if (req.method === "PUT") {
+   else if (req.method === "PUT") {
+
     let data = req.body;
     let task = {
       title: data.TaskName,
@@ -41,40 +56,48 @@ export default async (req, res) => {
     };
 
     if (data.catigory === "toDo") {
+
       project.findOne({ _id: data.projectId }, async (err, result) => {
         if (!err && result) {
           let array = result.toDo.concat(task);
           await project.updateOne({ _id: data.projectId }, { toDo: array });
-        }else{
-            res.send("the project doseent exist")
+        } else {
+          res.send("the project doseent exist");
         }
-        res.send(data)
+        res.send(data);
       });
-    }else if(data.catigory === "doing"){
-        project.findOne({ _id: data.projectId }, async (err, result) => {
-            if (!err && result) {
-              let array = result.doing.concat(task);
-              await project.updateOne({ _id: data.projectId }, { doing: array });
-            }else{
-                res.send("the project doseent exist")
-            }
-            res.send(data)
-          });
-    }else if(data.catigory === "done"){
-        project.findOne({ _id: data.projectId }, async (err, result) => {
-            if (!err && result) {
-              let array = result.done.concat(task);
-              await project.updateOne({ _id: data.projectId }, { done: array });
-            }else{
-                res.send("the project doseent exist")
-            }
-            res.send(data)
-          });
+
+    } else if (data.catigory === "doing") {
+
+      project.findOne({ _id: data.projectId }, async (err, result) => {
+        if (!err && result) {
+          let array = result.doing.concat(task);
+          await project.updateOne({ _id: data.projectId }, { doing: array });
+        } else {
+          res.send("the project doseent exist");
+        }
+        res.send(data);
+      });
+
+    } else if (data.catigory === "done") {
+
+      project.findOne({ _id: data.projectId }, async (err, result) => {
+        if (!err && result) {
+          let array = result.done.concat(task);
+          await project.updateOne({ _id: data.projectId }, { done: array });
+        } else {
+          res.send("the project doseent exist");
+        }
+        res.send(data);
+      });
+
     }
   }
-  if(req.method==="DELETE"){
-    let projectId= req.query.projectId
-   await project.deleteOne({_id:projectId})
-   res.send("project deleted")
+   else if (req.method === "DELETE") {
+
+    let projectId = req.query.projectId;
+    await project.deleteOne({ _id: projectId });
+    res.send("project deleted");
+    
   }
 };
