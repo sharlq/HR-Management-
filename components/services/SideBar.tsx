@@ -5,7 +5,7 @@ import { selectRank } from "../../redux/features/userSlice";
 import { useRouter } from "next/router";
 
 const SideBar = () => {
-    
+
   const [stampClass, setStampClass] = useState({
     workingSchdual: "stamp active",
     leaveRequest: "stamp",
@@ -13,7 +13,9 @@ const SideBar = () => {
   });
   const [isManager, setIsManager] = useState(false);
   const [managerSectionClass, setManagerSectionClass] = useState("dontDisplay");
+  
   const rank = useSelector(selectRank);
+
   const router = useRouter();
 
   const verifyManagerStatus = () => {
@@ -32,6 +34,7 @@ const SideBar = () => {
       leaveRequest: "stamp",
       showLeaveRequests: "stamp",
     };
+
     for (let i = 0; i < stampClassProperties.length; i++) {
       if (servicePageName === stampClassProperties[i]) {
         tempToSetStampClasses[stampClassProperties[i]] = "stamp active";
@@ -39,6 +42,7 @@ const SideBar = () => {
         tempToSetStampClasses[stampClassProperties[i]] = "stamp";
       }
     }
+
     setStampClass(tempToSetStampClasses);
   };
 
@@ -46,10 +50,14 @@ const SideBar = () => {
     verifyManagerStatus();
     console.log(router.query);
   });
+
   return (
     <div className="services-sidebar">
+
       <div className="services-sidebar_employee">
+
         <h3>Employee services</h3>
+
         <ul>
           <div
             className="listItem"
@@ -66,9 +74,13 @@ const SideBar = () => {
             <li>Leave Request</li>
           </div>
         </ul>
+
       </div>
+
       <div className={managerSectionClass}>
+
         <h3>Manager section</h3>
+        
         <Link href="services/showLeaveRequests">
           <div
             className="listItem"
@@ -79,6 +91,7 @@ const SideBar = () => {
           </div>
         </Link>
       </div>
+
     </div>
   );
 };

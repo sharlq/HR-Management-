@@ -16,13 +16,15 @@ const Bottom: React.FC<{ skills: string[]; reportingManager: string }> = ({
     "#ff5722",
     "#e91e63",
   ];
-  
+
   return (
     <div className="profile-bottom ">
+
       <div className="profile-bottom_skills">
         <h3 className="title">Skills</h3>
         <div className="skills-paper">
           <div className="skills-list">
+
             {skills &&
               skills.map((i, index) => (
                 <Skill
@@ -38,6 +40,7 @@ const Bottom: React.FC<{ skills: string[]; reportingManager: string }> = ({
                   array={skills}
                 />
               ))}
+              
           </div>
         </div>
       </div>
@@ -55,6 +58,7 @@ const Bottom: React.FC<{ skills: string[]; reportingManager: string }> = ({
           }}
         />
       </div>
+
     </div>
   );
 };

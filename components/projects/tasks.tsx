@@ -5,10 +5,9 @@ import {
   selectSelectedProject,
   triggerAddTaskPopUp,
   getTaskCatigory,
-  getSelectedProject
+  getSelectedProject,
 } from "../../redux/features/projectsSlice";
 import Task from "./Task";
-
 
 type projectObj = {
   _id: string;
@@ -20,10 +19,12 @@ type projectObj = {
   doing: [];
   done: [];
 };
+
 const tasks: React.FC<{ title: string; children?: any }> = ({
   title,
   children,
 }) => {
+
   const project: projectObj | null = useSelector(selectSelectedProject);
   const dispatch = useDispatch();
 
@@ -31,12 +32,16 @@ const tasks: React.FC<{ title: string; children?: any }> = ({
     dispatch(getTaskCatigory(catigory));
     dispatch(triggerAddTaskPopUp({}));
   };
-  const handleDeleteTask = (taskId,projectCatigory) =>{
-    let filteredTasks = project[`${projectCatigory}`].filter((i)=>i._id!=taskId)
-    let dummyProject = {...project}
-    dummyProject[`${projectCatigory}`] = filteredTasks
-    dispatch(getSelectedProject(dummyProject))
-  }
+  const handleDeleteTask = (taskId, projectCatigory) => {
+    let filteredTasks = project[`${projectCatigory}`].filter(
+      (i) => i._id != taskId
+    );
+    let dummyProject = { ...project };
+    dummyProject[`${projectCatigory}`] = filteredTasks;
+    dispatch(getSelectedProject(dummyProject));
+  };
+
+  //consider adding this to didMount use effect and put it inside a function so its name expalins it 
   let catigory;
   if (project) {
     if (title === "To Do") {
@@ -47,6 +52,7 @@ const tasks: React.FC<{ title: string; children?: any }> = ({
       catigory = "done";
     }
   }
+
   return (
     <div className="tasksContainer">
       <div className="tasksContainer-title">

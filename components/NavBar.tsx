@@ -1,38 +1,54 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/Link";
 import axios from "axios";
 import { useRouter } from "next/router";
+
 const NavBar = () => {
-  const [isLogedInState,setIsLogInState] = useState(false)
+  const [isLogedInState, setIsLogInState] = useState(false);
+
   const router = useRouter();
-  const isLogedin =  async()=>{
-    let logedIn = await axios.get('http://localhost:3000/api/verify')
-    if(logedIn.data.verified===true){
-     setIsLogInState(true)
-    }else{
-      setIsLogInState(false)
+
+  const isLogedin = async () => {
+    let logedIn = await axios.get("http://localhost:3000/api/verify");
+    if (logedIn.data.verified === true) {
+      setIsLogInState(true);
+    } else {
+      setIsLogInState(false);
     }
-  }
+  };
 
-  const logOut = async() => {
-    await axios.get('http://localhost:3000/api/logOut')
-    router.push('/')
-  }
+  const logOut = async () => {
+    await axios.get("http://localhost:3000/api/logOut");
+    router.push("/");
+  };
 
-  useEffect(()=>{
-    isLogedin()
-  })
+  useEffect(() => {
+    isLogedin();
+  });
+
   return (
     <nav className="navBar">
+
+
       <div className="navBar-topSection">
         <div className="content">
+
           <h4>Company Name</h4>
-          {isLogedInState?<p style={{cursor:'pointer'}} onClick={()=>logOut()}>Log Out</p>:
-          <Link  href="/" replace={true}>
-          <p style={{cursor:'pointer'}}>Log In</p>
-          </Link>}
+
+          {isLogedInState ? (
+            <p style={{ cursor: "pointer" }} onClick={() => logOut()}>
+              Log Out
+            </p>
+          ) : (
+            <Link href="/" replace={true}>
+              <p style={{ cursor: "pointer" }}>Log In</p>
+            </Link>
+          )}
+
         </div>
       </div>
+
+
       <div className="navBar-bottomSection">
         <div className="content">
           <h4>HR Manager</h4>
@@ -44,7 +60,7 @@ const NavBar = () => {
               <li>Projects</li>
             </Link>
             <Link href="/services" replace={true}>
-            <li>Services</li>
+              <li>Services</li>
             </Link>
             <Link href="/profile" replace={true}>
               <li>Profile</li>
@@ -52,6 +68,7 @@ const NavBar = () => {
           </ul>
         </div>
       </div>
+
     </nav>
   );
 };

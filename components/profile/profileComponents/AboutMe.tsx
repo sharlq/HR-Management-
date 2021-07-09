@@ -2,9 +2,12 @@ import React from 'react'
 import TextField from "@material-ui/core/TextField";
 
 const AboutMe:React.FC<{aboutme:string}> = ({aboutme}) => {
+
     return (
         <div className="aboutMe">
+
         <h3 className="title">About Me</h3>
+
         <TextField
           className="aboutMe-text"
           label="About Me"
@@ -19,6 +22,7 @@ const AboutMe:React.FC<{aboutme:string}> = ({aboutme}) => {
             shrink: true,
           }}
         />
+        
       </div>
     )
 }

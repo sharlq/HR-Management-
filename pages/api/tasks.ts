@@ -1,12 +1,16 @@
 import project from '../../Model/project'
 export default (req,res) => {
+
+
     if(req.method==="DELETE"){
+
         let taskId = req.query.id;
         let projectId =req.query.project;
         let catigory = req.query.catigory
         
-        console.log(taskId, projectId,catigory)
+        
         project.findOne({_id:projectId},async(err,projectData)=>{
+
             if(!err && projectData){
                 
                 if(catigory==="toDo"){
@@ -19,7 +23,12 @@ export default (req,res) => {
                     let newDone = projectData.done.filter((i)=>i._id!=taskId)
                     await project.updateOne({_id:projectId},{done:newDone})
                 }
+
+
             }
+
         })
+        
     }
+
 }
