@@ -2,13 +2,11 @@
 @import 'sidebar';
 @import 'nav';
 @import 'home';
-@import 'profile'; 
-@import 'projects';
-@import 'services';
-@import 'leaveRequest';
 @import 'login';
 @import 'signup';
-@import 'updateProfile';
+@import './profile/profileIndex';
+@import './services/servicesIndex';
+@import './projects/projectsIndex';
 .mainContent{
     display: flex;
     padding-top: 120px;

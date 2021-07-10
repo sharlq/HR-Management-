@@ -6,16 +6,19 @@
     height: 80vh;
     border-radius: 15px;
     box-shadow: 1px 1px 12px rgba(0, 0, 0, .3);
+
     &-title{
         width: fit-content;
         margin:auto ;
         margin-top: 12vh;
     }
+
     &-paragraph{
         width: fit-content;
         margin:auto ;
         margin-top: 2vh;
     }
+
     &-cards{
         display: flex;
         margin: auto;
@@ -43,4 +46,6 @@
             width: auto;
         }
     }
+
+    
 }

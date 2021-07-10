@@ -20,8 +20,9 @@ const SideBar = () => {
 
   const verifyManagerStatus = () => {
     if (rank == "topManagement") setIsManager(true);
-    if (isManager) setManagerSectionClass("services-sidebar_manager");
+    if (isManager) setManagerSectionClass("servicesSidebar_manager");
   };
+
 
   const setStampForSelectedPage = (servicePageName) => {
      const stampClassProperties = [
@@ -46,15 +47,17 @@ const SideBar = () => {
     setStampClass(tempToSetStampClasses);
   };
 
+
   useEffect(() => {
     verifyManagerStatus();
     console.log(router.query);
   });
 
-  return (
-    <div className="services-sidebar">
 
-      <div className="services-sidebar_employee">
+  return (
+    <div className="servicesSidebar">
+
+      <div className="servicesSidebar_employee">
 
         <h3>Employee services</h3>
 
@@ -78,7 +81,6 @@ const SideBar = () => {
       </div>
 
       <div className={managerSectionClass}>
-
         <h3>Manager section</h3>
         
         <Link href="services/showLeaveRequests">

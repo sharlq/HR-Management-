@@ -1,0 +1,43 @@
+.profile{
+    .avatarSection {
+        display: flex;
+        margin-left: 2vw;
+        &-imageContainer {
+          width: 150px;
+          height: 150px;
+          border-radius: 50%;
+          overflow: hidden;
+          .image {
+            height: 100%;
+          }
+        }
+        .button {
+          margin-left: 5vw;
+          width: fit-content;
+          margin-top: 1vh;
+          
+        }
+        &-controls{
+          align-self: center;
+          display: flex;
+          flex-direction: column;
+          
+        }
+        &-imgName{
+          display: flex;
+          flex-direction: column;
+          align-items: center ;
+          .employeeName{
+            margin-top: 1vh;
+          }
+        }
+    }
+    .position {
+      margin-top: 4vh;
+      margin-left: 2vw;
+  
+      &-text {
+        margin-right: 4vw;
+      }
+    }
+}

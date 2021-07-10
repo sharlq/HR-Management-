@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../app/store";
+
+
 const projectsSlice = createSlice({
     name:'projectsReducer',
     initialState:{
@@ -8,6 +10,7 @@ const projectsSlice = createSlice({
         triggerAddTask:false,
         taskCatigory:''
     },
+
     reducers:{
         getProjects(state,action){
             state.projects=action.payload
@@ -22,7 +25,10 @@ const projectsSlice = createSlice({
             state.taskCatigory = action.payload
         }
     }
+    
 })
+
+
 
 export const {getProjects,getSelectedProject,triggerAddTaskPopUp,getTaskCatigory} = projectsSlice.actions
 export const selectProjects = (state:RootState) => state.projectsReducer.projects

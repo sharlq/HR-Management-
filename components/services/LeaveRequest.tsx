@@ -3,6 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import axios from "axios";
+
 type groupBtn = "default" | "primary";
 
 const LeaveRequest = () => {
@@ -41,11 +42,11 @@ const LeaveRequest = () => {
   };
 
   return (
-    <div className="leaveRequest">
+    <div className="leaveRequestForm">
 
-      <h3 className="leaveRequest-title">Leave Request</h3>
+      <h3 className="leaveRequestForm-title">Leave Request</h3>
 
-      <form className="leaveRequest-form">
+      <form className="leaveRequestForm-form">
 
         <TextField
           value={name}
