@@ -14,8 +14,9 @@ const ShowLeaveRequests = () => {
     fetchRequests();
   }, []);
 
+  
   return (
-    <div className="cardsContainer">
+    <div className="leavCardsContainer">
 
       {requests &&
         requests.map((i) => (

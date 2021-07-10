@@ -1,0 +1,29 @@
+
+.leavCardsContainer{
+    display: flex;
+    .leaveCard{
+        margin: auto;
+        margin-top: 4vh;
+        margin-bottom: 5vh;
+        margin-left: 4vw;
+        background: white;
+        width: 35vw;
+        height: fit-content;
+        padding: 50px;
+        border-radius: 15px;
+        box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.3);
+        &-title{
+            margin-bottom: 2vh;
+        }
+        &-fild{
+            width: fit-content;
+            margin: 1vw !important ;
+
+        }
+        &-container{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+}

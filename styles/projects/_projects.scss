@@ -12,6 +12,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
     &-workflow{
         display: flex;
         justify-content: space-between;
@@ -54,6 +55,7 @@
             }
         }
     }
+    
     &-title{
         display: flex;
         justify-content: space-between;
@@ -71,87 +73,6 @@
     }
 }
 
-///////////////////////@at-root
-
-.projectsSide{
-    margin-top: 4vh;
-    margin-left: 2vw;
-    flex: .25;
-    &-title{
-    width: inherit;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    }
-    ul{
-        margin-top: 2vh;
-        margin-left: 1vw;
-        margin-bottom: 1vh;
-        li{
-           // margin-top: 1vh;
-            background: white;
-            padding: 10px;
-            list-style: none;
-            border-top-right-radius: 5px;
-            border-bottom-right-radius: 5px;
-            width:200px;
-            
-        }
-        .stamp{
-            border-top-left-radius: 5px;
-            border-bottom-left-radius: 5px;
-            background-color: white;
-            width: 10px;
-        }
-        .active{
-            background: royalblue;
-        }
-        .singleProject{
-            cursor: pointer;
-            display: flex;
-            box-shadow: 1px 1px 4px rgba(0, 0, 0, .3);
-            margin-top: 1vh;
-            width:220px;
-            border-radius: 5px;
-            background-color: white;
-        }
-    
-    }
-}
-
-.popUp{
-    transition: opacity  .3s ease-in-out ;
-    background: rgba(0, 0, 0, 0.83);
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    z-index: 2;
-    top:0;
-     display: flex;
-   
-   &-form{
-       margin: auto;
-       background-color: white;
-       width: 50vw;
-       height: fit-content;
-       padding: 50px;
-       border-radius: 15px;
-       display: flex;
-       flex-direction: column;
-       align-content: center;
-       &_input{
-           margin-top: 2vh !important;
-       }
-       h2{
-           width: fit-content;
-           align-self: center;
-       }
-       &_button{
-           margin-top: 2vh !important;
-           
-       }
-   }
-}
 
 .projectsPage{
     overflow: hidden;

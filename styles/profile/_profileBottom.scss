@@ -1,0 +1,41 @@
+.profile-bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 2vw;
+    margin-top: 4vh;
+    .skills-list{
+      display: flex;
+      flex-wrap: wrap;
+      overflow: overlay;
+      height: 187px;
+    }
+    .skills-paper {
+      padding: 10px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      width: 400px;
+      height: 200px;
+      .skill {
+        padding: 10px;
+        background-color: royalblue;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        width: 150px;
+        margin: 5px;
+        border-radius: 4px;
+        max-height: 45px;
+        .delete{
+          cursor: pointer;
+        }
+        .skill-taile {
+          display: flex;
+          .divider {
+            height: 100%;
+            width: 1px;
+            background-color: white;
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+  }
