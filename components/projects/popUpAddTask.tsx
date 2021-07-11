@@ -13,7 +13,7 @@ import {
 } from "../../redux/features/projectsSlice";
 
 const PopUpAddProject: React.FC<{}> = () => {
-
+  //maybe seperate the logic 
   const [name, setName] = useState<string>();
   const [description, setDescription] = useState<string>();
   const [team, setTeam] = useState<string>();
@@ -27,7 +27,7 @@ const PopUpAddProject: React.FC<{}> = () => {
   const dispatch = useDispatch();
 
   let opacity: string, visibility: "visible" | "hidden";
-
+  //maybe didmount use effect
   if (trigger) {
     visibility = "visible";
     opacity = "1";
@@ -36,35 +36,39 @@ const PopUpAddProject: React.FC<{}> = () => {
     opacity = "0";
   }
 
+  const addTheTaskToDB =()=>{
+    axios.put("http://localhost:3000/api/projects", {
+      projectId: project._id,
+      catigory: catigory,
+      TaskName: name,
+      TaskDescription: description,
+      TaskTeam: team,
+    });
+  };
+  const updateTheCurrentUI =()=>{
+    let dummyProject = { ...project };
+    dummyProject[`${catigory}`] = dummyProject[`${catigory}`].concat({
+      _id: "dummyId",
+      description,
+      team,
+      title: name,
+    });
+    dispatch(getSelectedProject(dummyProject));
+  };
+
   const handleAddTask = async () => {
     if (name && description && team && project) {
-        //think about extracting this part of the if statement into function r multiable functions
       setError(false);
       setErrorMessage("");
 
-      axios.put("http://localhost:3000/api/projects", {
-        projectId: project._id,
-        catigory: catigory,
-        TaskName: name,
-        TaskDescription: description,
-        TaskTeam: team,
-      });
+      addTheTaskToDB()
+      updateTheCurrentUI()
 
-      let dummyProject = { ...project };
-      dummyProject[`${catigory}`] = dummyProject[`${catigory}`].concat({
-        _id: "dummyId",
-        description,
-        team,
-        title: name,
-      });
-      dispatch(getSelectedProject(dummyProject));
       dispatch(triggerAddTaskPopUp({}));
-
       setName("");
       setDescription("");
       setTeam("");
 
-     
     } else if (!project) {
       setError(true);
       setErrorMessage("Select Project");
