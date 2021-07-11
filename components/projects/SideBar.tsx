@@ -13,13 +13,24 @@ const SideBar: React.FC<{
   const dispatch = useDispatch();
   const projects = useSelector(selectProjects);
 
-  //consider putting this into didMount useEffect 
   let stampClasses = {};
-  if (projects) {
-    for (let i = 0; i < projects.length; i++) {
-      stampClasses[`${projects[i]._id}`] = "stamp";
+
+  
+  useEffect(()=>{
+    initiateTempForClassStamp()
+  })
+  useEffect(() => {
+    setClassTheStamp(stampClasses);
+  }, [projects]);
+  
+  
+  const initiateTempForClassStamp = () => {
+    if (projects) {
+      for (let i = 0; i < projects.length; i++) {
+        stampClasses[`${projects[i]._id}`] = "stamp";
+      }
     }
-  }
+  };
 
   const handleChoseProject = (id) => {
     for (let i in stampClasses) {
@@ -29,33 +40,24 @@ const SideBar: React.FC<{
         stampClasses[i] = "stamp";
       }
     }
-
     let theChosenOne = projects.filter((i) => i._id === id);
     dispatch(getSelectedProject(theChosenOne[0]));
     setClassTheStamp(stampClasses);
+  };
 
-    };
-
-  useEffect(() => {
-    setClassTheStamp(stampClasses);
-  }, [projects]);
 
   return (
     <aside className="projectsSide">
-
       <div className="projectsSide-title">
-
         <h2>Projects </h2>
 
         <AddIcon
           style={{ cursor: "pointer" }}
           onClick={() => handleTrigger()}
         />
-
       </div>
 
       <ul>
-
         {classTheStamp &&
           projects &&
           projects.map((i) => (
@@ -73,9 +75,7 @@ const SideBar: React.FC<{
               </li>
             </div>
           ))}
-          
       </ul>
-
     </aside>
   );
 };
