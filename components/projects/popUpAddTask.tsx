@@ -13,7 +13,7 @@ import {
 } from "../../redux/features/projectsSlice";
 
 const PopUpAddProject: React.FC<{}> = () => {
-  //maybe seperate the logic 
+  //maybe seperate the logic
   const [name, setName] = useState<string>();
   const [description, setDescription] = useState<string>();
   const [team, setTeam] = useState<string>();
@@ -26,17 +26,22 @@ const PopUpAddProject: React.FC<{}> = () => {
 
   const dispatch = useDispatch();
 
-  let opacity: string, visibility: "visible" | "hidden";
-  //maybe didmount use effect
-  if (trigger) {
-    visibility = "visible";
-    opacity = "1";
-  } else {
-    visibility = "hidden";
-    opacity = "0";
-  }
+  let opacity: string, visibility: "visible" | "hidden" = "hidden";
+  
 
-  const addTheTaskToDB =()=>{
+  const popUpDownTheForm = () => {
+    if (trigger) {
+      visibility = "visible";
+      opacity = "1";
+    } else {
+      visibility = "hidden";
+      opacity = "0";
+    }
+  };
+ 
+    popUpDownTheForm()
+
+  const addTheTaskToDB = () => {
     axios.put("http://localhost:3000/api/projects", {
       projectId: project._id,
       catigory: catigory,
@@ -45,7 +50,7 @@ const PopUpAddProject: React.FC<{}> = () => {
       TaskTeam: team,
     });
   };
-  const updateTheCurrentUI =()=>{
+  const updateTheCurrentUI = () => {
     let dummyProject = { ...project };
     dummyProject[`${catigory}`] = dummyProject[`${catigory}`].concat({
       _id: "dummyId",
@@ -61,14 +66,13 @@ const PopUpAddProject: React.FC<{}> = () => {
       setError(false);
       setErrorMessage("");
 
-      addTheTaskToDB()
-      updateTheCurrentUI()
+      addTheTaskToDB();
+      updateTheCurrentUI();
 
       dispatch(triggerAddTaskPopUp({}));
       setName("");
       setDescription("");
       setTeam("");
-
     } else if (!project) {
       setError(true);
       setErrorMessage("Select Project");
@@ -84,17 +88,15 @@ const PopUpAddProject: React.FC<{}> = () => {
       style={{ visibility: visibility, opacity: opacity }}
       onClick={() => dispatch(triggerAddTaskPopUp({}))}
     >
-
       <div
         className="popUp-form"
         style={{ visibility: visibility, opacity: opacity }}
         onClick={(e) => e.stopPropagation()}
       >
-
         <h2>Create new Task</h2>
 
         {error && <Alert severity="error">{errorMessage}</Alert>}
-        
+
         <TextField
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -128,9 +130,7 @@ const PopUpAddProject: React.FC<{}> = () => {
         >
           Create Task
         </Button>
-
       </div>
-
     </div>
   );
 };

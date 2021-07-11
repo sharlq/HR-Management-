@@ -7,21 +7,15 @@ export default (req, res) => {
 
   if (req.method === "GET") {
     try {
-
-
       jwt.verify(cookies.auth, SECRET, (err, decoded) => {
-
         if (decoded) {
-          console.log(err);
           users.findOne({ _id: decoded.id }, (err, data) => {
-          res.send(data);
+            res.send(data);
           });
         } else {
           res.send({ getOut: true });
         }
-
       });
-
     } catch {
       res.send(cookies.auth);
     }

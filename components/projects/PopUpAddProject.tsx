@@ -8,7 +8,6 @@ const PopUpAddProject: React.FC<{ trigger: boolean; handleTrigger: any }> = ({
   trigger,
   handleTrigger,
 }) => {
-
   const [name, setName] = useState<string>();
   const [department, setDepartment] = useState<string>();
   const [manager, setManager] = useState<string>();
@@ -17,18 +16,21 @@ const PopUpAddProject: React.FC<{ trigger: boolean; handleTrigger: any }> = ({
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   let opacity: string, visibility: "visible" | "hidden";
+
+  const popUpDownTheForm = () => {
+    if (trigger) {
+      visibility = "visible";
+      opacity = "1";
+    } else {
+      visibility = "hidden";
+      opacity = "0";
+    }
+  };
   
-  if (trigger) {
-    visibility = "visible";
-    opacity = "1";
-  } else {
-    visibility = "hidden";
-    opacity = "0";
-  }
+  popUpDownTheForm()
 
   const handleAddProject = async () => {
     if (name && department && manager) {
-
       setError(false);
       setErrorMessage("");
 
@@ -40,12 +42,10 @@ const PopUpAddProject: React.FC<{ trigger: boolean; handleTrigger: any }> = ({
 
       handleTrigger();
       window.location.reload();
-
     } else {
       setError(true);
       setErrorMessage("fill all the fields");
     }
-
   };
 
   return (
@@ -54,13 +54,11 @@ const PopUpAddProject: React.FC<{ trigger: boolean; handleTrigger: any }> = ({
       style={{ visibility: visibility, opacity: opacity }}
       onClick={() => handleTrigger()}
     >
-        
       <div
         className="popUp-form"
         style={{ visibility: visibility, opacity: opacity }}
         onClick={(e) => e.stopPropagation()}
       >
-
         <h2>Create new Project</h2>
 
         {error && <Alert severity="error">{errorMessage}</Alert>}
@@ -90,7 +88,7 @@ const PopUpAddProject: React.FC<{ trigger: boolean; handleTrigger: any }> = ({
           variant="outlined"
         />
         {/* <TextField value={team} onChange={(e)=>setTeam(e.target.value)} className="popUp-form_input" id="outlined-basic" label="Project Team" variant="outlined" /> */}
-        
+
         <Button
           variant="contained"
           color="primary"
@@ -99,9 +97,7 @@ const PopUpAddProject: React.FC<{ trigger: boolean; handleTrigger: any }> = ({
         >
           Create
         </Button>
-
       </div>
-
     </div>
   );
 };
