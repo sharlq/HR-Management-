@@ -6,7 +6,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { setRank, selectRank } from "../../redux/features/userSlice";
-
+import { useVerify } from "../../components/customHooks/useVerify";
 export default function Home() {
   
   let items = ["PAGE 1", "PAGE 2", "PAGE 3"];
@@ -26,10 +26,13 @@ export default function Home() {
     }
   };
 
+  const userData:any = useVerify()
+  
+ 
   useEffect(() => {
-    verify();
+      setEmployeeName( userData.name);
     dispatch(setRank({}));
-  }, []);
+  }, [userData]);
 
   return (
     <div className="root">
