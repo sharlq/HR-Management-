@@ -1,4 +1,4 @@
-import leave from "../../Model/leaveForm";
+import leave from "../../../Model/leaveForm";
 
 export default (req, res) => {
 

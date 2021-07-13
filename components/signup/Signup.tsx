@@ -23,7 +23,7 @@ const Signup = () => {
       setSignInError(false)
       setSignInErrorMessage("")
     
-   let postAndCheck = await  axios.post('http://localhost:3000/api/users',{
+   let postAndCheck = await  axios.post('http://localhost:3000/api/signUp/users',{
       name:userNameRef.current.value,
       password:passwordRef.current.value,
       email:emailRef.current.value

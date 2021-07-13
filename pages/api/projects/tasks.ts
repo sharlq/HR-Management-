@@ -1,4 +1,4 @@
-import project from '../../Model/project'
+import project from '../../../Model/project'
 export default (req,res) => {
 
 

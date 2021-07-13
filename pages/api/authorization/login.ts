@@ -1,8 +1,8 @@
-import user from "../../Model/user";
+import user from "../../../Model/user";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import cookie from "cookie";
-import { responsiveFontSizes } from "@material-ui/core";
+
 type userData = {
   _id: any;
   name: string;

@@ -4,6 +4,7 @@ import SideBar from "../../components/projects/SideBar";
 import PopUpAddProject from "../../components/projects/PopUpAddProject";
 import { useDispatch } from "react-redux";
 import PopUpAddTask from "../../components/projects/popUpAddTask";
+import { useVerify } from "../../components/customHooks/useVerify";
 const Index = () => {
 
   const [trigger, setTrigger] = useState(false);
@@ -12,6 +13,8 @@ const Index = () => {
     setTrigger((prev) => !prev);
   };
 
+  useVerify();
+  
   return (
     <div className="projectsPage">
 

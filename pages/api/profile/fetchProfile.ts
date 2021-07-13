@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import users from "../../Model/user";
+import users from "../../../Model/user";
 
 export default (req, res) => {
   let cookies = req.cookies;

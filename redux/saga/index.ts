@@ -14,7 +14,7 @@ export default function* fetchProjects(){
     try{
         const projects = yield call(requestProjects,'http://localhost:3000/api/projects')
         yield put(getProjects(projects.data))
-        const rank = yield call(requestRank,"http://localhost:3000/api/rank")
+        const rank = yield call(requestRank,"http://localhost:3000/api/authorization/rank")
         yield put(setRank(rank.data))
         console.log("life pls",projects)
     }catch(e){

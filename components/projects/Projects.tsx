@@ -11,7 +11,7 @@ const Projects: React.FC = () => {
   const project = useSelector(selectSelectedProject);
 
   const handleDeleteProject = () => {
-    axios.delete(`http://localhost:3000/api/projects?projectId=${project._id}`);
+    axios.delete(`http://localhost:3000/api/projects/projects?projectId=${project._id}`);
     window.location.reload();
   };
 

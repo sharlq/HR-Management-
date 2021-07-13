@@ -1,16 +1,15 @@
-import React from 'react'
-import LeaveRequest from '../../components/services/LeaveRequest'
-import SideBar from '../../components/services/SideBar'
-
+import React from "react";
+import LeaveRequest from "../../components/services/LeaveRequest";
+import SideBar from "../../components/services/SideBar";
+import { useVerify } from "../../components/customHooks/useVerify";
 const Index = () => {
-    return (
-    
-      <div className="mainContent">
-        <SideBar />
-       <LeaveRequest/>
-      </div>
-    
-    )
-}
+  useVerify();
+  return (
+    <div className="mainContent">
+      <SideBar />
+      <LeaveRequest />
+    </div>
+  );
+};
 
-export default Index
+export default Index;

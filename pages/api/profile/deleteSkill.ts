@@ -1,11 +1,11 @@
-import users from "../../Model/user";
+import users from "../../../Model/user";
 import jwt from "jsonwebtoken";
 
 export default (req, res) => {
   const SECRET = process.env.REACT_APP_JWT_SECRET;
   let cookies = req.cookies;
   let data = req.body;
-
+  //it dosent work fix it
   if (req.method === "PATCH") {
 
 
