@@ -15,7 +15,7 @@ export default function Home() {
   const [employeeName, setEmployeeName] = useState<string>("");
 
   const router = useRouter();
-
+/*
   const verify = async () => {
     let isVerified = await axios.get("http://localhost:3000/api/verify");
     if (isVerified.data.verified !== true) {
@@ -23,7 +23,7 @@ export default function Home() {
     } else {
       setEmployeeName(isVerified.data.name);
     }
-  };
+  };*/
 
   const userData: any = useVerify();
 

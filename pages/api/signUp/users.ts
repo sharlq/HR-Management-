@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import user from "../../Model/user";
+import user from "../../../Model/user";
 import bcrypt from "bcrypt";
 export default async (req, res) => {
 

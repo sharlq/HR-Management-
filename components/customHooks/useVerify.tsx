@@ -4,22 +4,21 @@ import { useEffect, useState } from "react";
 export const useVerify = () => {
   const [userData, setUserData] = useState<any>(false);
   let router = useRouter();
-  const verify = async () => {
-    
-    let isVerified = await axios.get("http://localhost:3000/api/verify");
-    // if (isVerified.data.verified !== true) {
-    //   router.push("../");
-    // } else {
-      if (isVerified.data.verified !== true){router.push("../");}
-      let res = isVerified.data;
-       setUserData(res);
-         // }
-  };
-useEffect(()=>{
-  verify()
   
-},[])
+  const verify = async () => {
+    let isVerified = await axios.get(
+      "http://localhost:3000/api/authorization/verify"
+    );
+    if (isVerified.data.verified !== true) {
+      router.push("../");
+    }
+    let res = isVerified.data;
+    setUserData(res);
+  };
 
+  useEffect(() => {
+    verify();
+  }, []);
 
   return userData;
 };

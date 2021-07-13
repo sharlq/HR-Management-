@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import project from "../../Model/project";
+import project from "../../../Model/project";
 
 export default async (req, res) => {
 

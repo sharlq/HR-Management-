@@ -1,9 +1,9 @@
 import jwt from "jsonwebtoken";
-import user from "../../Model/user";
+import user from "../../../Model/user";
 export default (req, res) => {
 
   let SECRET = process.env.REACT_APP_JWT_SECRET;
-
+  //there is a problem with the adding skills both in term of ui and adding new skills
 
   if (req.method === "POST") {
 

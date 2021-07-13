@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import user from "../../Model/user";
+import user from "../../../Model/user";
 export default (req, res) => {
 
   if (req.method === "GET") {
