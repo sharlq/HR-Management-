@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setRank, selectRank } from "../../redux/features/userSlice";
 import { useVerify } from "../../components/customHooks/useVerify";
 export default function Home() {
-  
   let items = ["PAGE 1", "PAGE 2", "PAGE 3"];
   const dispatch = useDispatch();
 
@@ -26,17 +25,17 @@ export default function Home() {
     }
   };
 
-  const userData:any = useVerify()
-  
- 
+  const userData: any = useVerify();
+
   useEffect(() => {
-      setEmployeeName( userData.name);
-    dispatch(setRank({}));
+    setEmployeeName(userData.name);
   }, [userData]);
+  useEffect(() =>{
+    dispatch(setRank({}));
+  },[])
 
   return (
     <div className="root">
-
       <Head>
         <title>Employee Management</title>
         <meta name="description" content="Employee Management system" />
@@ -44,13 +43,10 @@ export default function Home() {
       </Head>
 
       <div className="mainContent">
-
         {rank === "topManagement" ? <SideBar items={items} /> : null}
 
         <HomeContent employeeName={employeeName} />
-
       </div>
-
     </div>
   );
 }
