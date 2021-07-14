@@ -1,32 +1,18 @@
 import project from '../../../Model/project'
+import { DeleteTask } from '../../../controllersAPI/projects/tasks';
+
 export default (req,res) => {
 
-
     if(req.method==="DELETE"){
+        let taskInfo ={
+         taskId : req.query.id,
+         taskProjectId :req.query.project,
+         catigory : req.query.catigory}
 
-        let taskId = req.query.id;
-        let projectId =req.query.project;
-        let catigory = req.query.catigory
-        
-        
-        project.findOne({_id:projectId},async(err,projectData)=>{
-
+        project.findOne({_id:taskInfo.taskProjectId},async(err,projectData)=>{
             if(!err && projectData){
-                
-                if(catigory==="toDo"){
-                    let newToDo = projectData.toDo.filter((i)=>  i._id!=taskId)
-                    await project.updateOne({_id:projectId},{toDo:newToDo})
-                }else if(catigory==="doing"){
-                    let newDoing = projectData.doing.filter((i)=>i._id!=taskId)
-                    await project.updateOne({_id:projectId},{doing:newDoing})
-                }else if(catigory==="done"){
-                    let newDone = projectData.done.filter((i)=>i._id!=taskId)
-                    await project.updateOne({_id:projectId},{done:newDone})
-                }
-
-
+             DeleteTask(taskInfo,projectData)
             }
-
         })
         
     }

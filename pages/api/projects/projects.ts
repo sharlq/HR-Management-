@@ -37,19 +37,7 @@ export default async (req, res) => {
     });
   } else if (req.method === "PUT") {
     let data = req.body;
-    let task = {
-      title: data.TaskName,
-      description: data.TaskDescription,
-      team: data.TaskTeam,
-    };
-
-    if (data.catigory === "toDo") {
-      addTaskToProject(req, res, data);
-    } else if (data.catigory === "doing") {
-      addTaskToProject(req, res, data);
-    } else if (data.catigory === "done") {
-      addTaskToProject(req, res, data);
-    }
+    addTaskToProject(req, res, data);
 
   } else if (req.method === "DELETE") {
     let projectId = req.query.projectId;
