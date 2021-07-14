@@ -1,66 +1,35 @@
-import user from "../../../Model/user";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import cookie from "cookie";
 
+import {
+  setCookieWithJWT,
+  getUserDataFromDB,
+} from "../../../controllersAPI/auth/logIn";
 type userData = {
   _id: any;
   name: string;
   password: string;
   email: string;
 };
-
-let JWT_SECRET = process.env.REACT_APP_JWT_SECRET;
+type findUser = userData | false;
 
 export default async (req, res) => {
-
   if (req.method === "POST") {
-
     let data = req.body;
-    let theUser: userData | null = null;
+    let theUser: Promise<findUser> = getUserDataFromDB(req, res, data);
+    let userInfo: findUser = await theUser;
 
-    await user.findOne({ name: data.name }, (err, dat) => {
-      if (!err && dat) {
-        theUser = dat;
-      } else {
-        res.json({ authToken: false });
-      }
-    });
+    if (userInfo) {
 
-    if (theUser) {
-
-
-      bcrypt.compare(data.password, theUser.password, (err, result) => {
-        
-        if (result) {
-          const claims = {
-            id: theUser._id,
-            name: theUser.name,
-          };
-
-          const token = jwt.sign(claims, JWT_SECRET, { expiresIn: "2d" });
-          res.setHeader(
-              "set-cookie",
-              cookie.serialize("auth", token, {
-                httpOnly: true,
-                secure: false,
-                sameSite: "strict",
-                maxAge: 3600 * 24 * 7,
-                path: "/",
-              })
-            )
-            .json({ authToken: true });
+      bcrypt.compare(data.password, userInfo.password, (err, result) => {
+        if (!err&&result) {
+          setCookieWithJWT(req, res, userInfo);
         } else {
           res.json({ authToken: false });
         }
-        
       });
-
-
 
     } else {
       res.json({ authToken: false });
     }
   }
-
 };

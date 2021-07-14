@@ -7,9 +7,9 @@ export default (req, res) => {
 
   if (req.method === "GET") {
     try {
-      jwt.verify(cookies.auth, SECRET, (err, decoded) => {
+      jwt.verify(cookies.auth, SECRET, async(err, decoded) => {
         if (decoded) {
-          users.findOne({ _id: decoded.id }, (err, data) => {
+         await users.findOne({ _id: decoded.id }, (err, data) => {
             res.send(data);
           });
         } else {
