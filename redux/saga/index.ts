@@ -12,7 +12,7 @@ const requestRank =(url) =>{
 
 export default function* fetchProjects(){
     try{
-        const projects = yield call(requestProjects,'http://localhost:3000/api/projects')
+        const projects = yield call(requestProjects,'http://localhost:3000/api/projects/projects')
         yield put(getProjects(projects.data))
         const rank = yield call(requestRank,"http://localhost:3000/api/authorization/rank")
         yield put(setRank(rank.data))
