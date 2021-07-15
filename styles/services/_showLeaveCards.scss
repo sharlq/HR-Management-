@@ -1,6 +1,7 @@
 
 .leavCardsContainer{
     display: flex;
+    flex-wrap: wrap;
     .leaveCard{
         margin: auto;
         margin-top: 4vh;
