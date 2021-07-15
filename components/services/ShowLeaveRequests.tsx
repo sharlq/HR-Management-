@@ -21,12 +21,12 @@ const ShowLeaveRequests = () => {
       {requests &&
         requests.map((i) => (
           <RequestForm
-            name={i.naem}
+            name={i.name}
             department={i.department}
             days={i.numberOfDays}
             leaveType={i.leaveType}
-            reasonOfLeave={i.reasonOfLeave}
-            informedManager={true}
+            reasonOfLeave={i.reason}
+            informedManager={i.informedManager}
           />
         ))}
         
