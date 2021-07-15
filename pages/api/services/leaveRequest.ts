@@ -4,8 +4,7 @@ export default (req, res) => {
 
 
   if (req.method === "POST") {
-    let data = req.body;
-    createLeaveRequest(res,data)
+   createLeaveRequest(req,res)
   } else if (req.method === "GET") {
     getAllLeaveRequests(res)
   }

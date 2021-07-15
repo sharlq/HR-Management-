@@ -1,6 +1,7 @@
 import leave from "../../Model/leaveForm";
 
-export const createLeaveRequest = (res,data) =>{
+export const createLeaveRequest = (req,res) =>{
+  let data = req.body;
     leave.create(data, (err, data) => {
         if (err) {
           res.send(err);

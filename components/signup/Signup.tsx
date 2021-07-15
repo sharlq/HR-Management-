@@ -3,6 +3,8 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import axios from 'axios'
 import {Alert} from '@material-ui/lab';
+import Link from 'next/Link'
+
 const Signup = () => {
   const userNameRef= useRef<HTMLInputElement>()
   const emailRef = useRef<HTMLInputElement>()
@@ -17,8 +19,8 @@ const Signup = () => {
   const [signInError,setSignInError] = useState<boolean>(false)
   const [signInErrorMessage,setSignInErrorMessage] = useState<string>("")
   
-  const handleSubmit = async(e)=>{
-    e.preventDefault
+  const handleSubmit = async()=>{
+    
     if(passwordRef.current.value === repPasswordRef.current.value && emailRef.current.value && userNameRef.current.value ){
       setSignInError(false)
       setSignInErrorMessage("")
@@ -92,9 +94,11 @@ const Signup = () => {
           onChange={e=>setRepPassword(e.target.value)}
         />
 
-        <Button onClick={(e)=>handleSubmit(e)}  className="signup-btn" variant="contained" color="primary">
+        <Link href="../">
+        <Button onClick={()=>handleSubmit()}  className="signup-btn" variant="contained" color="primary">
           SIGN UP
         </Button>
+        </Link>
 
       </form>
       

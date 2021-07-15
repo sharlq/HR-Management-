@@ -3,6 +3,7 @@ import { Clear } from "@material-ui/icons";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setSkills } from "../../../../redux/features/skillsSlice";
+
 const Skill: React.FC<{
   skill: string;
   background: string;
