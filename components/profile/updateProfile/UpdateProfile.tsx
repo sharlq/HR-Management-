@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { TextField, Button } from "@material-ui/core";
 import axios from "axios";
+import Link from "next/Link"
 
 type inputState = string;
 
@@ -11,12 +12,12 @@ const UpdateProfile = () => {
   const [reportingManager, setReportingManager] = useState<inputState>("");
   const [aboutme, setAboutme] = useState<inputState>("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    let skillsArray;
+  const handleSubmit = () => {
+     let skillsArray;
 
     if (skills !== "") {
       skillsArray = skills.split(",");
+      if(skillsArray[skillsArray.length - 1]==="")skillsArray.pop();
     } else {
       skillsArray = "";
     }
@@ -37,7 +38,7 @@ const UpdateProfile = () => {
 
       <h3>Udate Profile</h3>
 
-      {/*signInError && <Alert className="alert" severity="error">{signInErrorMessage}</Alert>*/}
+    
      
       <form className="signup-form">
         <TextField
@@ -97,14 +98,18 @@ const UpdateProfile = () => {
             shrink: true,
           }}
         />
+
+        <Link href="/profile" replace={true}>
         <Button
-          onClick={(e) => handleSubmit(e)}
+          onClick={() => handleSubmit()}
           className="signup-btn"
           variant="contained"
           color="primary"
         >
-          SIGN UP
+          Update Profile
         </Button>
+        </Link>
+
 
       </form>
 
