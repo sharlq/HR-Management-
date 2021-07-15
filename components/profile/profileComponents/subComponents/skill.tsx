@@ -20,7 +20,7 @@ const Skill: React.FC<{
 
   return (
     <div className="skill" style={{ background: background }}>
-      {skill}
+     <p className="skill-name">{skill}</p>
       <div className="skill-taile">
         <div className="divider" />
         <Clear className="delete" onClick={() => handleDelete()} />

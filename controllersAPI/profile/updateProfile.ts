@@ -26,7 +26,8 @@ export const updateProfile = (req,res) =>{
 
 
     jwt.verify(cookies.auth, SECRET, async (err, decoded) => {
-      if (decoded) {
+
+      if (!err&&decoded) {
         for(let i in data){
         if (data[`${i}`] !== "") {
             updateField(decoded,i)

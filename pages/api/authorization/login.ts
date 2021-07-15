@@ -15,7 +15,7 @@ type findUser = userData | false;
 export default async (req, res) => {
   if (req.method === "POST") {
     let data = req.body;
-    let theUser: Promise<findUser> = getUserDataFromDB(req, res, data);
+    let theUser: Promise<findUser> =  getUserDataFromDB(req, res, data);
     let userInfo: findUser = await theUser;
 
     if (userInfo) {
