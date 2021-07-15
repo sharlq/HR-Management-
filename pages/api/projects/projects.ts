@@ -35,6 +35,7 @@ export default async (req, res) => {
         });
       }
     });
+    
   } else if (req.method === "PUT") {
     let data = req.body;
     addTaskToProject(req, res, data);

@@ -52,7 +52,7 @@ const RequestForm: React.FC<{
           label="Leave Type"
           variant="outlined"
         />
-        <h3 className="leaveCard-fild">Informed the Manager</h3>
+        <h3 className="leaveCard-fild">Informed the Manager: {informedManager? `True`:`False`}</h3>
         <TextField
           className="leaveCard-fild"
           id="outlined-basic"

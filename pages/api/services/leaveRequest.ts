@@ -1,25 +1,13 @@
-import leave from "../../../Model/leaveForm";
+import { createLeaveRequest,getAllLeaveRequests } from "../../../controllersAPI/services/leaveRequest";
 
 export default (req, res) => {
 
 
   if (req.method === "POST") {
     let data = req.body;
-
-    leave.create(data, (err, data) => {
-      if (err) {
-        res.send(err);
-      } else if (data) {
-        res.status(200).send("leave request waiting approval");
-      }
-    });
-
-
+    createLeaveRequest(res,data)
   } else if (req.method === "GET") {
-    leave.find({}, (err, result) => {
-      res.send(result);
-    });
-
+    getAllLeaveRequests(res)
   }
 
 
