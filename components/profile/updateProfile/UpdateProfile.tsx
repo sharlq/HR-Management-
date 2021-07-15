@@ -22,7 +22,7 @@ const UpdateProfile = () => {
       skillsArray = "";
     }
 
-    axios.post("http://localhost:3000/api/profile/updateProfile", {
+    axios.post("http://localhost:3000/api/profile/profile", {
       designation: designation,
       department: department,
       aboutme: aboutme,

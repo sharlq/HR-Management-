@@ -1,7 +1,23 @@
 import user from "../../Model/user";
 import bcrypt from "bcrypt";
 
-export const doseNameOrEmailUsed = async(data)=>{
+export const signupNewAccount = async(req,res)=>{
+  let data = req.body;
+  const [checkName,checkEmail] = await doseNameOrEmailUsed(data)
+
+  if (!checkName && !checkEmail) {
+
+    createNewAccount(res,data)
+  
+  } else if (checkName) {
+    res.status(200).send("this user name is already used");
+  } else if (checkEmail) {
+    res.status(200).send("this email is already used");
+  }
+};
+
+
+const doseNameOrEmailUsed = async(data)=>{
     let checkName = false;
     let checkEmail = false;
 
@@ -14,9 +30,9 @@ export const doseNameOrEmailUsed = async(data)=>{
     });
 
     return [checkName,checkEmail]
-}
+};
 
-export const createNewAccount = (res,data) =>{
+const createNewAccount = (res,data) =>{
     bcrypt.hash(data.password, 10,  (err, hash)=> {
         user.create({
           name: data.name,
@@ -27,4 +43,4 @@ export const createNewAccount = (res,data) =>{
       });
 
       res.status(201).send("Account created successfully");
-}
+};
