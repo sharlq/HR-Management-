@@ -3,7 +3,7 @@ import AddIcon from "@material-ui/icons/Add";
 import { useSelector } from "react-redux";
 import { selectProjects } from "../../redux/features/projectsSlice";
 import { useDispatch } from "react-redux";
-import { getSelectedProject } from "../../redux/features/projectsSlice";
+import { getSelectedProject,getProjects} from "../../redux/features/projectsSlice";
 
 const SideBar: React.FC<{
   handleTrigger: any;
@@ -18,6 +18,7 @@ const SideBar: React.FC<{
   
   useEffect(()=>{
     initiateTempForClassStamp()
+  
   })
   useEffect(() => {
     setClassTheStamp(stampClasses);
