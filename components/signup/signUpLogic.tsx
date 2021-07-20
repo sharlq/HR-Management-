@@ -1,33 +1,48 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
-export const signUpLogic = () => {
+
+
+export const signUpLogic = () =>  {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [repPassword, setRepPassword] = useState<string>("");
 
-  const [signInErrorMessage, setSignInErrorMessage] = useState<string>("");
+  const [signInErrorMessage, setSignInErrorMessage] = useState<string[]|"">("");
 
   const router = useRouter();
 
+  
+
   const handleSubmit = async () => {
-    if (password === repPassword && email && name && password) {
-      signUp.createNewAccount();
-    } else if (password !== repPassword) {
+    if (password === repPassword && email && name && password) {      
+       
+      if(signUp.isUserInfoVailed()){
+        signUp.createNewAccount();
+       }
+
+    } else{ 
+    if (password !== repPassword) {
       signUp.setMatchingPasswordErrorMessage();
-    } else if (!email) {
+    }  
+    if (!email) {
       signUp.setEmailErrorMessage();
-    } else if (!name) {
+    }  
+    if (!name) {
       signUp.setUserNameErrorMessage();
-    } else if (!password) {
-      signUp.setPasswordErrorMessage();
+    }  
+    if (!password) {
+      signUp.setPasswordErrorMessage();}
     }
   };
 
   const signUp = {
+    errorMessages:[],
+
+
     createNewAccount: async () => {
-      setSignInErrorMessage("");
+      signUp.resetErrorMasseges();
 
       let postAndCheck = await axios.post(
         "http://localhost:3000/api/signUp/users",
@@ -42,25 +57,81 @@ export const signUpLogic = () => {
         postAndCheck.data === "this user name is already used" ||
         postAndCheck.data === "this email is already used"
       ) {
-        setSignInErrorMessage(postAndCheck.data);
+        signUp.setUsedAccountError();
       } else {
         router.push("../");
       }
     },
+
+
     setEmailErrorMessage: () => {
-      setSignInErrorMessage("the Email is required");
+      signUp.errorMessages.push("The Email is required")
+      setSignInErrorMessage(signUp.errorMessages);
     },
     setPasswordErrorMessage: () => {
-      setSignInErrorMessage("the password is required");
+      signUp.errorMessages.push("The Password is required")
+      setSignInErrorMessage(signUp.errorMessages);
     },
     setUserNameErrorMessage: () => {
-      setSignInErrorMessage("the user name is required");
+      signUp.errorMessages.push("The User Name is required")
+      setSignInErrorMessage(signUp.errorMessages);
     },
     setMatchingPasswordErrorMessage: () => {
-      setSignInErrorMessage("password do not match");
+      signUp.errorMessages.push("Password do not match")
+      setSignInErrorMessage(signUp.errorMessages);
     },
+    setUsedAccountError:()=>{
+      signUp.errorMessages.push("The User Name or the Email already used")
+      setSignInErrorMessage(signUp.errorMessages);
+    },
+
+    resetErrorMasseges:()=>{
+      signUp.errorMessages=[]
+      setSignInErrorMessage("");
+    },
+
+    isUserInfoVailed:()=>{
+      signUp.resetErrorMasseges();
+       let validate = new validateEnteredData();
+        if(!validate.isUserNameValid()){
+          signUp.errorMessages.push('User Name should be at least 4 charachters')
+        }
+        if(!validate.isEmailValid()){
+          signUp.errorMessages.push('Email should be in this form: example@email.com')
+        }
+        if(!validate.isPasswordValid()){
+          signUp.errorMessages.push(...['Password should contain one capital letter','Password should contain one small letter','Password should contain one digit','Password minimum length is 6'])
+        }
+        console.log(signUp.errorMessages)
+        if(signUp.errorMessages.length===0){
+          return true;
+        }else{
+          setSignInErrorMessage(signUp.errorMessages);
+          return false
+        }
+    }
   };
 
+
+  function validateEnteredData(){
+   
+    const EMAIL_REGEX:RegExp = /([-!#-'*+/-9=?A-Z^-~]+(\.[-!#-'*+/-9=?A-Z^-~]+)*|"([]!#-[^-~ \t]|(\\[\t -~]))+")@[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?(\.[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?)+/
+    const NAME_REGEX:RegExp =/^(?=.{4,20}$)[a-zA-Z0-9._]/
+    const PASSWORD_REGEX:RegExp =/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$/
+    
+    this.isEmailValid = function():boolean{ 
+      return EMAIL_REGEX.test(email);
+    }
+    this.isUserNameValid = function():boolean{
+      return NAME_REGEX.test(name);
+    }
+    this.isPasswordValid = function():boolean{
+     return PASSWORD_REGEX.test(password);
+    }
+
+  }
+
+  
   const returnValues = {
     name:{
         name,
