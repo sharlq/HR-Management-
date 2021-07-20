@@ -11,24 +11,27 @@ type userData = {
   password: string;
   email: string;
 };
-type findUser = userData | false;
+type findUser = userData | false|null;
 
 export const login = async (req, res) => {
   let data = req.body;
   let theUser: Promise<findUser> = getUserDataFromDB(req, res, data);
   let userInfo: findUser = await theUser;
+  
 
   if (userInfo) {
     bcrypt.compare(data.password, userInfo.password, (err, result) => {
       if (!err && result) {
         setCookieWithJWT(req, res, userInfo);
-      } else {
+      }else{
         res.json({ authToken: false });
       }
     });
-  } else {
+
+  } else{
     res.json({ authToken: false });
   }
+  
 };
 
 const getUserDataFromDB: (req: any, res: any, data: any) => Promise<findUser> =
@@ -39,13 +42,14 @@ const getUserDataFromDB: (req: any, res: any, data: any) => Promise<findUser> =
         if (!err && result) {
           return result;
         } else {
-          res.json({ authToken: false });
           return false;
         }
       }
     );
     return val;
   };
+
+
 
 const setCookieWithJWT = (req, res, userInfo) => {
   const claims = {
