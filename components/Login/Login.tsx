@@ -37,7 +37,7 @@ const Login = () => {
       router.push("home");
     } else {
       setLogInError(true);
-      setLogInErrorMessage("eather user name or password is wrong");
+      setLogInErrorMessage("Eather user name or password is wrong");
     }
   };
 
