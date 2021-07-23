@@ -1,14 +1,19 @@
+import type { NextApiRequest, NextApiResponse } from 'next'
 import jwt from "jsonwebtoken";
 import users from "../../Model/user";
 
+type claims = {
+  id:string,
+  name:string
+}
 
 let SECRET = process.env.REACT_APP_JWT_SECRET;
 
 
-export const fetchUserProfile = (req,res) =>{
+export const fetchUserProfile = (req:NextApiRequest,res:NextApiResponse) =>{
     let cookies = req.cookies;
     try {
-        jwt.verify(cookies.auth, SECRET, async(err, decoded) => {
+        jwt.verify(cookies.auth, SECRET, async(err, decoded:claims) => {
           if (decoded) {
   
            await users.findOne({ _id: decoded.id }, (err, data) => {

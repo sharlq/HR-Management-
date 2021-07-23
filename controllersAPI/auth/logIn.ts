@@ -1,3 +1,4 @@
+import type { NextApiRequest, NextApiResponse } from 'next'
 import cookie from "cookie";
 import jwt from "jsonwebtoken";
 import user from "../../Model/user";
@@ -11,9 +12,9 @@ type userData = {
   password: string;
   email: string;
 };
-type findUser = userData | false|null;
+type findUser = userData |null;
 
-export const login = async (req, res) => {
+export const login = async (req:NextApiRequest , res:NextApiResponse) => {
   let data = req.body;
   let theUser: Promise<findUser> = getUserDataFromDB(req, res, data);
   let userInfo: findUser = await theUser;
@@ -34,7 +35,7 @@ export const login = async (req, res) => {
   
 };
 
-const getUserDataFromDB: (req: any, res: any, data: any) => Promise<findUser> =
+const getUserDataFromDB: (req:NextApiRequest, res:NextApiResponse, data: any) => Promise<findUser> =
   async (req, res, data) => {
     let val = await user.findOne(
       { name: data.name },
@@ -51,7 +52,7 @@ const getUserDataFromDB: (req: any, res: any, data: any) => Promise<findUser> =
 
 
 
-const setCookieWithJWT = (req, res, userInfo) => {
+const setCookieWithJWT = (req:NextApiRequest, res:NextApiResponse, userInfo:findUser) => {
   const claims = {
     id: userInfo._id,
     name: userInfo.name,

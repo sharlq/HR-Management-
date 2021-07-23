@@ -13,7 +13,6 @@ const Login = () => {
   const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const [logInError, setLogInError] = useState<boolean>(false);
   const [logInErrorMessage, setLogInErrorMessage] = useState<string>("");
 
   const router = useRouter();
@@ -32,11 +31,9 @@ const Login = () => {
       password: passwordRef.current.value,
     });
     if (authToken.data.authToken) {
-      setLogInError(false);
       setLogInErrorMessage("");
       router.push("home");
     } else {
-      setLogInError(true);
       setLogInErrorMessage("Eather user name or password is wrong");
     }
   };
@@ -48,7 +45,7 @@ const Login = () => {
   return (
     <form className="login">
       <h3>Log In</h3>
-      {logInError && (
+      {logInErrorMessage && (
         <Alert className="alert" severity="error">
           {logInErrorMessage}
         </Alert>

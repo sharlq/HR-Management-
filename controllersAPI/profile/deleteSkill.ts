@@ -1,12 +1,19 @@
+import type { NextApiRequest, NextApiResponse } from 'next'
 import users from "../../Model/user";
 import jwt from "jsonwebtoken";
 
-export const deleteSkill =(req,res) =>{
+
+type claims = {
+  id:string,
+  name:string
+}
+
+export const deleteSkill =(req:NextApiRequest,res:NextApiResponse) =>{
     const SECRET = process.env.REACT_APP_JWT_SECRET;
     let cookies = req.cookies;
     let data = req.body;
 
-    jwt.verify(cookies.auth, SECRET, (err, decoded) => {
+    jwt.verify(cookies.auth, SECRET, (err, decoded:claims) => {
 
         if (!err && decoded) {
   
@@ -15,7 +22,7 @@ export const deleteSkill =(req,res) =>{
             if (!err && result) {
               
               result.skills.splice(data.index, 1);
-              let updatedSkills = res.skills;
+              let updatedSkills = result.skills;
               await users.updateOne(
                 { _id: decoded.id },
                 { skills: updatedSkills }

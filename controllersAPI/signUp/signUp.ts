@@ -1,7 +1,8 @@
+import type { NextApiRequest, NextApiResponse } from 'next'
 import user from "../../Model/user";
 import bcrypt from "bcrypt";
 
-export const signupNewAccount = async(req,res)=>{
+export const signupNewAccount = async(req:NextApiRequest,res:NextApiResponse)=>{
   let data = req.body;
   const [checkName,checkEmail] = await doseNameOrEmailUsed(data)
 
