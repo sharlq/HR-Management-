@@ -1,6 +1,7 @@
+import type { NextApiRequest, NextApiResponse } from 'next'
 import leave from "../../Model/leaveForm";
 
-export const createLeaveRequest = (req,res) =>{
+export const createLeaveRequest = (req:NextApiRequest,res:NextApiResponse) =>{
   let data = req.body;
     leave.create(data, (err, data) => {
         if (err) {

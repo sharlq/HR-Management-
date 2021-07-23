@@ -1,6 +1,7 @@
+import type { NextApiRequest, NextApiResponse } from 'next'
 import project from '../../Model/project'
 
-export const deleteTask = (req,res)=>{
+export const deleteTask = (req:NextApiRequest,res:NextApiResponse)=>{
     let taskInfo ={
         taskId : req.query.id,
         taskProjectId :req.query.project,

@@ -1,9 +1,16 @@
+import type { NextApiRequest, NextApiResponse } from 'next'
 import project from "../../Model/project";
 import jwt from "jsonwebtoken";
 
+
+type claims = {
+  id:string,
+  name:string
+}
+
 let SECRET = process.env.REACT_APP_JWT_SECRET;
 
-export const addTaskToProject = (req, res) => {
+export const addTaskToProject = (req:NextApiRequest, res:NextApiResponse) => {
   let data = req.body;
   project.findOne({ _id: data.projectId }, async (err, result) => {
     let task = {
@@ -33,10 +40,10 @@ export const addTaskToProject = (req, res) => {
 
 
 
-export const getUserProjects = (req,res)=>{
+export const getUserProjects = (req:NextApiRequest,res:NextApiResponse)=>{
   let cookies = req.cookies;
 
-    jwt.verify(cookies.auth, SECRET, (err, decoded) => {
+    jwt.verify(cookies.auth, SECRET, (err, decoded:claims) => {
       if (!err && decoded) {
         project.find({}, (err, docs) => {
           let usersProjects = docs.filter((i) => i.team.includes(decoded.name));
@@ -48,11 +55,11 @@ export const getUserProjects = (req,res)=>{
 
 
 
-export const createNewProject =(req,res) =>{
+export const createNewProject =(req:NextApiRequest,res:NextApiResponse) =>{
   let data = req.body;
   let cookies = req.cookies;
 
-  jwt.verify(cookies.auth, SECRET, (err, decoded) => {
+  jwt.verify(cookies.auth, SECRET, (err, decoded:claims) => {
     if (!err && decoded) {
       project.create({
         projectName: data.projectName,
@@ -71,7 +78,7 @@ export const createNewProject =(req,res) =>{
 
 
 
-export const deleteProject = async(req,res) =>{
+export const deleteProject = async(req:NextApiRequest,res:NextApiResponse) =>{
   let projectId = req.query.projectId;
   await project.deleteOne({ _id: projectId });
   res.send("project deleted");
