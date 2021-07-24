@@ -7,9 +7,6 @@ import { Alert } from "@material-ui/lab";
 import { useRouter } from "next/router";
 
 const Login = () => {
-  const usernameRef = useRef<HTMLInputElement>();
-  const passwordRef = useRef<HTMLInputElement>();
-
   const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -27,8 +24,8 @@ const Login = () => {
   const handleLogIn = async (e) => {
     e.preventDefault();
     let authToken = await axios.post("http://localhost:3000/api/authorization/login", {
-      name: usernameRef.current.value,
-      password: passwordRef.current.value,
+      name: userName,
+      password: password,
     });
     if (authToken.data.authToken) {
       setLogInErrorMessage("");
@@ -51,7 +48,6 @@ const Login = () => {
         </Alert>
       )}
       <TextField
-        inputRef={usernameRef}
         className="login-input"
         label="Username"
         variant="outlined"
@@ -59,7 +55,6 @@ const Login = () => {
         onChange={(e) => setUserName(e.target.value)}
       />
       <TextField
-        inputRef={passwordRef}
         className="login-input"
         label="Password"
         type="password"
