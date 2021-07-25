@@ -1,6 +1,6 @@
 import React from "react";
 import { CardAnimated } from "sharlq-comp-lib";
-import Link from "next/Link";
+import Link from "next/link";
 const Home: React.FC<{ employeeName: string }> = ({ employeeName }) => {
   return (
     <div className="home">

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import Link from "next/Link";
+import Link from "next/link";
 import { useSelector } from "react-redux";
 import { selectRank } from "../../redux/features/userSlice";
 import { useRouter } from "next/router";

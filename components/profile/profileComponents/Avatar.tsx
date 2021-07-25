@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "@material-ui/core";
-import Link from "next/Link";
+import Link from "next/link";
 const Avatar: React.FC<{ avatar: string; name: string }> = ({
   avatar,
   name,

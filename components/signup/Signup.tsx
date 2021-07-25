@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import axios from "axios";
 import { Alert } from "@material-ui/lab";
-import { useRouter } from "next/router";
 import { signUpLogic } from "./signUpLogic";
 
 const Signup = () => {
