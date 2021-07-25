@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TextField, Button } from "@material-ui/core";
 import axios from "axios";
-import Link from "next/Link"
+import Link from "next/link"
 
 type inputState = string;
 
