@@ -35,7 +35,7 @@ const Services = () => {
                 </h3>
                 <div className="servicesHome-content">
                 <CardAnimated yourClass="animatedCard" >
-                <Link href='/services/ShowLeaveRequests'>
+                <Link href='/services/showLeaveRequests'>
                         <h4>Show Leave Request</h4>
                         </Link>
                     </CardAnimated>
