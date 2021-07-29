@@ -14,7 +14,7 @@ const Skill: React.FC<{
   let dispatch = useDispatch();
 
   const handleDelete = async () => {
-    axios.patch("http://localhost:3000/api/profile/deleteSkill", { index });
+    axios.patch("/api/profile/deleteSkill", { index });
     dispatch(setSkills({ skills: Math.random() }));
     array.splice(index, 1);
   };

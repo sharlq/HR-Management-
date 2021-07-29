@@ -17,7 +17,7 @@ const Task: React.FC<{
 
   const handleDelete = async () => {
     axios.delete(
-      `http://localhost:3000/api/projects/tasks?id=${id}&project=${project._id}&catigory=${catigory}`
+      `/api/projects/tasks?id=${id}&project=${project._id}&catigory=${catigory}`
     );
     handleDeleteTask(id, catigory);
   };

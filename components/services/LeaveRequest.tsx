@@ -31,7 +31,7 @@ const LeaveRequest = () => {
   };
 
   const handleSubmit = async () => {
-    await axios.post("http://localhost:3000/api/services/leaveRequest", {
+    await axios.post("/api/services/leaveRequest", {
       name: name,
       department: department,
       numberOfDays: days,

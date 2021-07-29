@@ -6,9 +6,7 @@ export const useVerify = () => {
   let router = useRouter();
   
   const verify = async () => {
-    let isVerified = await axios.get(
-      `${process.env.VERCEL_URL}/api/authorization/verify`
-    );
+    let isVerified = await axios.get("/api/authorization/verify");
     if (isVerified.data.verified !== true) {
       router.push("../");
     }

@@ -29,7 +29,7 @@ const Profile = () => {
   const router = useRouter();
 
   let fetchProfile = async () => {
-    let res = await axios.get("http://localhost:3000/api/profile/profile");
+    let res = await axios.get("/api/profile/profile");
     setUserProfile(res.data);
     if (res.data.getOut) {
       router.push("/");

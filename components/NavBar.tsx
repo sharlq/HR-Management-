@@ -9,7 +9,7 @@ const NavBar = () => {
   const router = useRouter();
 
   const isLogedin = async () => {
-    let logedIn = await axios.get("http://localhost:3000/api/authorization/verify");
+    let logedIn = await axios.get("/api/authorization/verify");
     if (logedIn.data.verified === true) {
       setIsLogInState(true);
     } else {
@@ -18,7 +18,7 @@ const NavBar = () => {
   };
 
   const logOut = async () => {
-    await axios.get("http://localhost:3000/api/authorization/logOut");
+    await axios.get("/api/authorization/logOut");
     router.push("/");
   };
 

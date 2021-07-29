@@ -45,7 +45,7 @@ export const signUpLogic = () =>  {
       signUp.resetErrorMasseges();
 
       let postAndCheck = await axios.post(
-        "http://localhost:3000/api/signUp/users",
+        "/api/signUp/users",
         {
           name: name,
           password: password,

@@ -15,7 +15,7 @@ const Login = () => {
   const router = useRouter();
 
   const isLogedin = async () => {
-    let logedIn = await axios.get(`${process.env.VERCEL_URL}/api/authorization/verify`);
+    let logedIn = await axios.get("/api/authorization/verify");
     if (logedIn.data.verified === true) {
       router.push("/home");
     }
@@ -23,7 +23,7 @@ const Login = () => {
 
   const handleLogIn = async (e) => {
     e.preventDefault();
-    let authToken = await axios.post(`${process.env.VERCEL_URL}/api/authorization/login`, {
+    let authToken = await axios.post("/api/authorization/login", {
       name: userName,
       password: password,
     });
