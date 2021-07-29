@@ -34,7 +34,7 @@ const PopUpAddProject: React.FC<{ trigger: boolean; handleTrigger: any }> = ({
       setError(false);
       setErrorMessage("");
 
-      axios.post("http://localhost:3000/api/projects/projects", {
+      axios.post("/api/projects/projects", {
         projectName: name,
         projectDepartment: department,
         projectManager: manager,

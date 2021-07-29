@@ -6,7 +6,7 @@ const ShowLeaveRequests = () => {
   const [requests, setRequests] = useState<any>();
 
   const fetchRequests = async () => {
-    let response = await axios.get("http://localhost:3000/api/services/leaveRequest");
+    let response = await axios.get("/api/services/leaveRequest");
     setRequests(response.data);
   };
 

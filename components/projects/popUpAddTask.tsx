@@ -42,7 +42,7 @@ const PopUpAddProject: React.FC<{}> = () => {
     popUpDownTheForm()
 
   const addTheTaskToDB = () => {
-    axios.put("http://localhost:3000/api/projects/projects", {
+    axios.put("/api/projects/projects", {
       projectId: project._id,
       catigory: catigory,
       TaskName: name,
