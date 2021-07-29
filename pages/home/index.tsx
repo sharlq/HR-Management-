@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React, { useState, useEffect } from "react";
 import SideBar from "../../components/SideBar";
-import HomeContent from "../../components/home/home";
+import HomeContent from "../../components/Home/home";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
