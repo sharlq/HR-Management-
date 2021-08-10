@@ -50,7 +50,16 @@ export const updateProfile = (req,res) =>{
           );
     }
 
+    const processSkillsData= ()=>{
+      let temp = {}
+      for(let i =0 ;i<data.skills.length ;i++){
+        temp[`${data.skills[i].trim()}`]=data.skills[i].trim();
+      }
+      return temp
+    }
 
+    data.skills = processSkillsData();
+    console.log(data.skills)
     jwt.verify(cookies.auth, SECRET, async (err, decoded) => {
 
       if (!err&&decoded) {

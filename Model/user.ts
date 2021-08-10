@@ -32,7 +32,7 @@ const user = new mongoose.Schema({
     required: false,
   },
   skills: {
-    type: Array,
+    type:{String},
     required: false,
   },
   reportingManager: {
