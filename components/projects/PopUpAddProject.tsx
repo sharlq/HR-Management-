@@ -8,9 +8,9 @@ const PopUpAddProject: React.FC<{ trigger: boolean; handleTrigger: any }> = ({
   trigger,
   handleTrigger,
 }) => {
-  const [name, setName] = useState<string>();
-  const [department, setDepartment] = useState<string>();
-  const [manager, setManager] = useState<string>();
+  const [name, setName] = useState<string>("");
+  const [department, setDepartment] = useState<string>("");
+  const [manager, setManager] = useState<string>("");
   //  const [team,setTeam]=useState<string>()
   const [error, setError] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
