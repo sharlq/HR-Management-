@@ -26,18 +26,19 @@ const Bottom: React.FC<{ skills: string[]; reportingManager: string }> = ({
           <div className="skills-list">
 
             {skills &&
-              skills.map((i, index) => (
+              Object.keys(skills).map((i, index) => (
                 <Skill
                   background={
                     backGroundcolors[
                       Math.round(
-                        Math.random() * backGroundcolors.length * 10 * index
+                        Math.random() * backGroundcolors.length * 10
                       ) % backGroundcolors.length
                     ]
                   }
                   skill={i.trim()}
-                  index={index}
-                  array={skills}
+                  key={i}
+                  identifire={i.trim()}
+                  theSkillsObject={skills}
                 />
               ))}
               

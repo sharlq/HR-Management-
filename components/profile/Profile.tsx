@@ -30,7 +30,7 @@ const Profile = () => {
 
   let fetchProfile = async () => {
     let res = await axios.get("/api/profile/profile");
-    setUserProfile(res.data);
+    setUserProfile(()=>res.data);
     if (res.data.getOut) {
       router.push("/");
     }

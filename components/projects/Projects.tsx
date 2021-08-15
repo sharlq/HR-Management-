@@ -14,7 +14,10 @@ const Projects: React.FC = () => {
     axios.delete(`/api/projects/projects?projectId=${project._id}`);
     window.location.reload();
   };
-
+ 
+  useEffect(()=>{
+    console.log(project)
+  })
   return (
     <div className="projects">
 

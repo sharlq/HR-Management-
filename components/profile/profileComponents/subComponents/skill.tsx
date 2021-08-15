@@ -7,16 +7,15 @@ import { setSkills } from "../../../../redux/features/skillsSlice";
 const Skill: React.FC<{
   skill: string;
   background: string;
-  index: number;
-  array: string[];
-}> = ({ skill, background, index, array }) => {
+  identifire:string
+  theSkillsObject: {};
+}> = ({ skill, background, identifire, theSkillsObject }) => {
 
   let dispatch = useDispatch();
 
   const handleDelete = async () => {
-    axios.patch("/api/profile/deleteSkill", { index });
-    dispatch(setSkills({ skills: Math.random() }));
-    array.splice(index, 1);
+   await axios.patch("/api/profile/deleteSkill", { identifire });
+   await dispatch(setSkills({ skills: Math.random() })); 
   };
 
   return (

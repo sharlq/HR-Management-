@@ -15,18 +15,37 @@ const Signup = () => {
     handleSubmit,
   } = signUpLogic()
 
+  const testid = {
+    username:{
+    "data-testid":"username"
+    },
+    email:{
+      "data-testid":"email"
+    },
+    password:{
+      "data-testid":"password"
+    },
+    repPassword:{
+      "data-testid":"repPassword"
+    }
+
+  }
+
   return (
     <div className="signup">
       <h3>Sign Up</h3>
 
       {signInErrorMessage && (
-        <Alert className="alert" severity="error">
-          {signInErrorMessage.map((i)=><p>{i}</p>)}
+        <Alert className="alert" severity="error" >
+          <div data-testid="alert">
+          {signInErrorMessage.map((i)=><p key={i}>{i}</p>)}
+          </div>
         </Alert>
       )}
 
       <form className="signup-form">
         <TextField
+          inputProps={testid.username}
           className="signup-input"
           label="Username"
           variant="outlined"
@@ -34,6 +53,7 @@ const Signup = () => {
           onChange={(e) => name.setName(e.target.value)}
         />
         <TextField
+          inputProps={testid.email}
           className="signup-input"
           label="Email"
           variant="outlined"
@@ -41,6 +61,7 @@ const Signup = () => {
           onChange={(e) => email.setEmail(e.target.value)}
         />
         <TextField
+        inputProps={testid.password}
           className="signup-input"
           label="Password"
           type="password"
@@ -49,6 +70,7 @@ const Signup = () => {
           onChange={(e) => password.setPassword(e.target.value)}
         />
         <TextField
+        inputProps={testid.repPassword}
           className="signup-input"
           label="Repeate Password"
           type="password"

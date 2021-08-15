@@ -30,6 +30,7 @@ const Login = () => {
     if (authToken.data.authToken) {
       setLogInErrorMessage("");
       router.push("home");
+      window.location.reload()
     } else {
       setLogInErrorMessage("Eather user name or password is wrong");
     }
