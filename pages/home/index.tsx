@@ -30,9 +30,7 @@ export default function Home() {
   useEffect(() => {
     setEmployeeName(userData.name);
   }, [userData]);
-  useEffect(() =>{
-    dispatch(setRank({}));
-  },[])
+
 
   return (
     <div className="root">

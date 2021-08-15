@@ -32,7 +32,10 @@ const tasks: React.FC<{ title: string; children?: any }> = ({
     dispatch(getTaskCatigory(catigory));
     dispatch(triggerAddTaskPopUp({}));
   };
+
+  //this function is passed to the child to remove the project from the ui instead you can just refetch the tasks
   const handleDeleteTask = (taskId, projectCatigory) => {
+
     let filteredTasks = project[`${projectCatigory}`].filter(
       (i) => i._id != taskId
     );

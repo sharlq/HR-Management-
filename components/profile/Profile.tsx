@@ -31,7 +31,6 @@ const Profile = () => {
   let fetchProfile = async () => {
     let res = await axios.get("/api/profile/profile");
     setUserProfile(()=>res.data);
-    console.log(userProfile)
     if (res.data.getOut) {
       router.push("/");
     }
@@ -39,7 +38,6 @@ const Profile = () => {
 
   useEffect(() => {
     fetchProfile();
-    console.log("it should remove skills")
   }, [reRenderSkills]);
 
   return (

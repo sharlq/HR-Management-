@@ -1,23 +1,24 @@
-import { call,put  } from '@redux-saga/core/effects'
+import { call,put,all,takeEvery  } from '@redux-saga/core/effects'
 import axios from 'axios'
 import { getProjects } from '../features/projectsSlice'
 import {setRank} from '../features/userSlice'
 
-const requestProjects = (url) =>{
+const requestsData = (url) =>{
  return   axios.get(url)
 } 
-const requestRank =(url) =>{
-    return axios.get(url)
+
+function* fetchProjects() {
+    const projects = yield call(requestsData,'/api/projects/projects')
+    yield put(getProjects(projects.data))
+}
+function* fetchRank(){
+    const rank = yield call(requestsData,'/api/authorization/rank')
+    yield put(setRank(rank.data))
 }
 
-export default function* fetchProjects(){
-    try{
-        const projects = yield call(requestProjects,'/api/projects/projects')
-        yield put(getProjects(projects.data))
-        const rank = yield call(requestRank,"/api/authorization/rank")
-        yield put(setRank(rank.data))
-        console.log("life pls",projects)
-    }catch(e){
-
-    }
+export default function* rootSaga(){
+ yield all([
+    yield takeEvery("INITIALIZE_DATA",fetchProjects),
+    yield takeEvery("INITIALIZE_DATA",fetchRank)
+ ])
 }
