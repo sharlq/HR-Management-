@@ -4,8 +4,10 @@ import { getProjects } from '../features/projectsSlice'
 import {setRank} from '../features/userSlice'
 
 const requestsData = (url) =>{
- return   axios.get(url)
+ return  axios.get(url)
 } 
+
+
 
 function* fetchProjects() {
     const projects = yield call(requestsData,'/api/projects/projects')
@@ -19,6 +21,7 @@ function* fetchRank(){
 export default function* rootSaga(){
  yield all([
     yield takeEvery("INITIALIZE_DATA",fetchProjects),
-    yield takeEvery("INITIALIZE_DATA",fetchRank)
+    yield takeEvery("INITIALIZE_DATA",fetchRank),
+    yield takeEvery("UPDATE_TASKS",fetchProjects)
  ])
 }

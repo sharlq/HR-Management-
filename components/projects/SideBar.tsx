@@ -4,41 +4,46 @@ import { useSelector } from "react-redux";
 import { selectProjects } from "../../redux/features/projectsSlice";
 import { useDispatch } from "react-redux";
 import { getSelectedProject,getProjects} from "../../redux/features/projectsSlice";
+import  Link  from 'next/link'
 
 const SideBar: React.FC<{
   handleTrigger: any;
 }> = ({ handleTrigger }) => {
+
   const [classTheStamp, setClassTheStamp] = useState<{}>();
 
   const dispatch = useDispatch();
-  const projects = useSelector(selectProjects);
+  let projects = useSelector(selectProjects);
 
-  let stampClasses = {};
+
 
   
   useEffect(()=>{
-    initiateTempForClassStamp()
-  
-  })
+    initiateTempForClassStamp();
+    
+  },[])
+
   useEffect(() => {
-    setClassTheStamp(stampClasses);
+    initiateTempForClassStamp();
   }, [projects]);
   
-  
   const initiateTempForClassStamp = () => {
+    let stampClasses = {};
     if (projects) {
       for (let i = 0; i < projects.length; i++) {
-        stampClasses[`${projects[i]._id}`] = "stamp";
+        stampClasses[`${projects[i]._id}`] = "projectName";
       }
     }
+    setClassTheStamp(stampClasses);
   };
 
   const handleChoseProject = (id) => {
-    for (let i in stampClasses) {
+    let stampClasses = {};
+    for (let i in classTheStamp) {
       if (id === i) {
-        stampClasses[i] = "stamp active";
+        stampClasses[i] = "projectName active";
       } else {
-        stampClasses[i] = "stamp";
+        stampClasses[i] = "projectName ";
       }
     }
     let theChosenOne = projects.filter((i) => i._id === id);
@@ -62,19 +67,11 @@ const SideBar: React.FC<{
         {classTheStamp &&
           projects &&
           projects.map((i) => (
-            <div
-              key={`container ${i._id}`}
-              className="singleProject"
-              onClick={() => handleChoseProject(i._id)}
-            >
-              <div
-                key={`stamp ${i._id}`}
-                className={classTheStamp[`${i._id}`]}
-              />
-              <li key={`item ${i._id}`} className="chosen">
+            <Link href = {`/projects/${i._id}`} key={`link ${i._id}`}>
+              <li key={`item ${i._id}`} className={classTheStamp[`${i._id}`]} onClick={()=>handleChoseProject(i._id)}>
                 {i.projectName}
               </li>
-            </div>
+            </Link>
           ))}
       </ul>
     </aside>

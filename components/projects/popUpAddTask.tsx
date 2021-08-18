@@ -7,10 +7,9 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   selectAddTaskTrigger,
   triggerAddTaskPopUp,
-  selectSelectedProject,
   selectTaskCatigory,
-  getSelectedProject,
 } from "../../redux/features/projectsSlice";
+import { useRouter } from 'next/router';
 
 const PopUpAddProject: React.FC<{}> = () => {
   //maybe seperate the logic
@@ -21,10 +20,12 @@ const PopUpAddProject: React.FC<{}> = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   const trigger = useSelector(selectAddTaskTrigger);
-  const project = useSelector(selectSelectedProject);
   const catigory = useSelector(selectTaskCatigory);
 
   const dispatch = useDispatch();
+  const router = useRouter();
+  
+  const {projectId} = router.query;
 
   let opacity: string, visibility: "visible" | "hidden" = "hidden";
   
@@ -43,37 +44,28 @@ const PopUpAddProject: React.FC<{}> = () => {
 
   const addTheTaskToDB = () => {
     axios.put("/api/projects/projects", {
-      projectId: project._id,
+      projectId: projectId,
       catigory: catigory,
       TaskName: name,
       TaskDescription: description,
       TaskTeam: team,
     });
   };
-  const updateTheCurrentUI = () => {
-    let dummyProject = { ...project };
-    dummyProject[`${catigory}`] = dummyProject[`${catigory}`].concat({
-      _id: "dummyId",
-      description,
-      team,
-      title: name,
-    });
-    dispatch(getSelectedProject(dummyProject));
-  };
 
   const handleAddTask = async () => {
-    if (name && description && team && project) {
+    if (name && description && team && projectId) {
       setError(false);
       setErrorMessage("");
 
       addTheTaskToDB();
-      updateTheCurrentUI();
 
       dispatch(triggerAddTaskPopUp({}));
       setName("");
       setDescription("");
       setTeam("");
-    } else if (!project) {
+
+      dispatch({type:"UPDATE_TASKS"})
+    } else if (!projectId) {
       setError(true);
       setErrorMessage("Select Project");
     } else {
