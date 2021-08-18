@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import ClearIcon from "@material-ui/icons/Clear";
 import axios from "axios";
 import { useSelector,useDispatch } from "react-redux";
-import { selectSelectedProject } from "../../redux/features/projectsSlice";
+import { selectProjects } from "../../../redux/features/projectsSlice";
+import { useRouter } from "next/router";
+import { CollectionsOutlined } from "@material-ui/icons";
 
 const Task: React.FC<{
   title: string;
@@ -10,18 +12,20 @@ const Task: React.FC<{
   team: string;
   id: string;
   catigory: string;
-  handleDeleteTask: any;
-}> = ({ title, description, team, id, catigory, handleDeleteTask }) => {
+}> = ({ title, description, team, id, catigory}) => {
   
-  let project = useSelector(selectSelectedProject);
-  let dispatch = useDispatch();
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const {projectId} = router.query;
+  const [fors,setFore] = useState(false)
 
   const handleDelete = async () => {
-    axios.delete(
-      `/api/projects/tasks?id=${id}&project=${project._id}&catigory=${catigory}`
+    await axios.delete(
+      `/api/projects/tasks?id=${id}&project=${projectId}&catigory=${catigory}`
     );
-    handleDeleteTask(id, catigory);
-    dispatch({type:"UPDATE_TASKS"})
+   await  dispatch({type:"UPDATE_TASKS"})
+   await  dispatch({type:"UPDATE_TASKS"})
+   setFore((prev)=>!prev)
   };
 
   return (

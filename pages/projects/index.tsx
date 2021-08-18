@@ -5,6 +5,7 @@ import PopUpAddProject from "../../components/projects/PopUpAddProject";
 import { useDispatch } from "react-redux";
 import PopUpAddTask from "../../components/projects/popUpAddTask";
 import { useVerify } from "../../components/customHooks/useVerify";
+import axios from "axios"
 const Index = () => {
 
   const [trigger, setTrigger] = useState(false);
@@ -12,6 +13,7 @@ const Index = () => {
   const handleAddProject = () => {
     setTrigger((prev) => !prev);
   };
+
 
   useVerify();
   
