@@ -6,6 +6,7 @@ import ClearIcon from "@material-ui/icons/Clear";
 import AddIcon from "@material-ui/icons/Add";
 import axios from "axios";
 import { useRouter } from 'next/router';
+import Team from "./team";
 
 const Projects: React.FC = () => {
 
@@ -19,6 +20,12 @@ const Projects: React.FC = () => {
     window.location.reload();
   };
  
+  const addToTeam= async() =>{
+   let res = await axios.get('/api/users/users')
+     await console.log(res)
+    await console.log("pressed")
+  }
+
   useEffect(()=>{
     console.log(project)
   })
@@ -47,13 +54,7 @@ const Projects: React.FC = () => {
 
       </div>
 
-      <div className="projects-team">
-        <div className="projects-team_header">
-          <h4>Project Team</h4>
-          <AddIcon />
-        </div>
-        team member1, team member2
-      </div>
+          <Team project={project[0]}/>
       
     </div>
   );

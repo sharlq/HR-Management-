@@ -15,6 +15,8 @@ const Projects: React.FC = () => {
     window.location.reload();
   };
  
+  
+
   useEffect(()=>{
     console.log(project)
   })

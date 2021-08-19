@@ -7,7 +7,7 @@ export const deleteTask = (req:NextApiRequest,res:NextApiResponse)=>{
         taskProjectId :req.query.project,
         catigory : req.query.catigory}
 
-       project.findOne({_id:taskInfo.taskProjectId},async(err,projectData)=>{
+       project.findOne({_id:taskInfo.taskProjectId},(err,projectData)=>{
            if(!err && projectData){
             deleteTaskFromCatigory(taskInfo,projectData)
            }
@@ -17,7 +17,6 @@ export const deleteTask = (req:NextApiRequest,res:NextApiResponse)=>{
 
 const deleteTaskFromCatigory = async(taskInfo,projectData) =>{
     let newTask = projectData[`${taskInfo.catigory}`].filter((i)=>  i._id!=taskInfo.taskId)
-    console.log(taskInfo)
     let mapCtigories ={
         toDo:{toDo:newTask},
         done:{done:newTask},
