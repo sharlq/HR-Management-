@@ -17,7 +17,6 @@ const Task: React.FC<{
   const router = useRouter();
   const dispatch = useDispatch();
   const {projectId} = router.query;
-  const [fors,setFore] = useState(false)
 
   const handleDelete = async () => {
     await axios.delete(
@@ -25,7 +24,6 @@ const Task: React.FC<{
     );
    await  dispatch({type:"UPDATE_TASKS"})
    await  dispatch({type:"UPDATE_TASKS"})
-   setFore((prev)=>!prev)
   };
 
   return (
