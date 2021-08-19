@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AddIcon from "@material-ui/icons/Add";
+import {useDispatch} from 'react-redux';
 
 type NamesArray = [
   {
@@ -12,21 +13,28 @@ type NamesArray = [
 const Team:React.FC<{project:any}> = ({project}) => {
   const [employees, setEmployees] = useState<NamesArray>();
   const [addEmployee, setAddEmployee] = useState<string>("");
+ 
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetcheEmployees();
   }, []);
 
+
   const addToTeam = async () => {
+    if(addEmployee){
     await axios.put(`/api/projects/team?projectId=${project._id}&name=${addEmployee}`);
-    await console.log("pressed");
+    await dispatch({type: "UPDATE_TASKS"})
+    setAddEmployee(()=>'')
+  }
   };
 
   const fetcheEmployees = async () => {
     const response = await axios.get("/api/users/users?require=name");
-    console.log(response);
     setEmployees(() => response.data);
   };
+
 
   return (
     <div className="projects-team">
@@ -45,8 +53,8 @@ const Team:React.FC<{project:any}> = ({project}) => {
         {addEmployee && (
           <ul className="employeesList">
             {employees
-              .slice(0, 3)
               .filter((i) => i.name.includes(addEmployee))
+              .slice(0, 3)
               .map((i) => (
                 <li className="employeeName" onClick={()=>setAddEmployee(()=>i.name)}>{i.name}</li>
               ))}

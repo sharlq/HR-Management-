@@ -92,6 +92,7 @@
         &_members{
             padding: 5px;
             display: flex;
+            flex-wrap: wrap;
             p{
                 width: fit-content;
             }
