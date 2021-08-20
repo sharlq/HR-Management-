@@ -18,6 +18,10 @@ const SideBar = () => {
 
   const router = useRouter();
 
+    useEffect(()=>{
+      console.log(router)
+    } )
+
   const verifyManagerStatus = () => {
     if (rank == "topManagement") setIsManager(true);
     if (isManager) setManagerSectionClass("servicesSidebar_manager");
@@ -62,6 +66,7 @@ const SideBar = () => {
         <h3>Employee services</h3>
 
         <ul>
+        <Link href="Working Schdual">
           <div
             className="listItem"
             onClick={() => setStampForSelectedPage("workingSchdual")}
@@ -69,6 +74,9 @@ const SideBar = () => {
             <div className={stampClass.workingSchdual} />
             <li>Working Schdual</li>
           </div>
+          </Link>
+
+          <Link href="LeaveRequest">
           <div
             className="listItem"
             onClick={() => setStampForSelectedPage("leaveRequest")}
@@ -76,6 +84,7 @@ const SideBar = () => {
             <div className={stampClass.leaveRequest} />
             <li>Leave Request</li>
           </div>
+          </Link>
         </ul>
 
       </div>
@@ -83,7 +92,7 @@ const SideBar = () => {
       <div className={managerSectionClass}>
         <h3>Manager section</h3>
         
-        <Link href="services/showLeaveRequests">
+        <Link href="showLeaveRequests">
           <div
             className="listItem"
             onClick={() => setStampForSelectedPage("showLeaveRequests")}
