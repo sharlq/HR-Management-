@@ -22,12 +22,12 @@ const Task: React.FC<{
     await axios.delete(
       `/api/projects/tasks?id=${id}&project=${projectId}&catigory=${catigory}`
     );
-   await  dispatch({type:"UPDATE_TASKS"})
-   await  dispatch({type:"UPDATE_TASKS"})
+     dispatch({type:"UPDATE_TASKS"})
+     dispatch({type:"UPDATE_TASKS"})
   };
 
   return (
-    <div className="task">
+    <div className="task" draggable='true'>
 
       <div className="task-header">
         <h4 className="task-title">{title}</h4>
