@@ -2,7 +2,13 @@ import React from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 
-const Employee:React.FC<{id?:string,name:string,department:string,designation:string,reportingManager:string}> = ({id,name,department,designation,reportingManager}) => {
+const Employee: React.FC<{
+  id?: string;
+  name: string;
+  department: string;
+  designation: string;
+  reportingManager: string;
+}> = ({ id, name, department, designation, reportingManager }) => {
   return (
     <div className="employee-card">
       <Avatar
@@ -30,8 +36,13 @@ const Employee:React.FC<{id?:string,name:string,department:string,designation:st
         <Button className="btn" variant="contained" color="primary">
           view more
         </Button>
-        <Button className="btn" variant="contained" color="primary" disabled={true}>
-        Evaluate
+        <Button
+          className="btn"
+          variant="contained"
+          color="primary"
+          disabled={true}
+        >
+          Evaluate
         </Button>
       </div>
     </div>

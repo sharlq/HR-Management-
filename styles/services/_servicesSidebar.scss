@@ -25,10 +25,11 @@
         margin-top: 1vh;
         width:220px;
         border-radius: 5px;
+        border-left:10px solid white;
         background-color: white;
     }
     .active{
-        background: royalblue;
+        border-left:10px solid royalblue;
     }
     &_manager{
         margin-top:5vh;

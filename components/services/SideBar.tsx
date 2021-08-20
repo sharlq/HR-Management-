@@ -1,107 +1,62 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { selectRank } from "../../redux/features/userSlice";
 import { useRouter } from "next/router";
 
 const SideBar = () => {
-
-  const [stampClass, setStampClass] = useState({
-    workingSchdual: "stamp active",
-    leaveRequest: "stamp",
-    showLeaveRequests: "stamp",
-  });
-  const [isManager, setIsManager] = useState(false);
-  const [managerSectionClass, setManagerSectionClass] = useState("dontDisplay");
-  
   const rank = useSelector(selectRank);
-
   const router = useRouter();
-
-    useEffect(()=>{
-      console.log(router)
-    } )
-
-  const verifyManagerStatus = () => {
-    if (rank == "topManagement") setIsManager(true);
-    if (isManager) setManagerSectionClass("servicesSidebar_manager");
-  };
-
-
-  const setStampForSelectedPage = (servicePageName) => {
-     const stampClassProperties = [
-      "workingSchdual",
-      "leaveRequest",
-      "showLeaveRequests",
-    ];
-    let tempToSetStampClasses = {
-      workingSchdual: "stamp",
-      leaveRequest: "stamp",
-      showLeaveRequests: "stamp",
-    };
-
-    for (let i = 0; i < stampClassProperties.length; i++) {
-      if (servicePageName === stampClassProperties[i]) {
-        tempToSetStampClasses[stampClassProperties[i]] = "stamp active";
-      } else {
-        tempToSetStampClasses[stampClassProperties[i]] = "stamp";
-      }
-    }
-
-    setStampClass(tempToSetStampClasses);
-  };
-
+  const [classes,setClasses] = useState({})
+  const activeRoutsMap={
+    "/services/viewEmployees":"listItem",
+    "/services/workingSchdual":"listItem",
+    "/services/LeaveRequest":"listItem",
+    "/services/showLeaveRequests":"listItem",
+  }
 
   useEffect(() => {
-    verifyManagerStatus();
-    console.log(router.query);
-  });
+   let interval = setInterval(()=>{markActiveRout();},100)
+   return ()=> clearInterval(interval)
+  },[]);
 
+  const markActiveRout = ()=>{
+    for (let i in activeRoutsMap){
+      if(i===router.asPath){
+        activeRoutsMap[i]="listItem active";
+      }else{
+        activeRoutsMap[i]="listItem";
+      }
+    }
+    setClasses(()=>activeRoutsMap)
+  }
 
   return (
     <div className="servicesSidebar">
-
       <div className="servicesSidebar_employee">
-
         <h3>Employee services</h3>
 
         <ul>
-        <Link href="Working Schdual">
-          <div
-            className="listItem"
-            onClick={() => setStampForSelectedPage("workingSchdual")}
-          >
-            <div className={stampClass.workingSchdual} />
-            <li>Working Schdual</li>
-          </div>
+          <Link href="workingSchdual">
+              <li className={classes["/services/workingSchdual"]}>Working Schdual</li>
           </Link>
-
           <Link href="LeaveRequest">
-          <div
-            className="listItem"
-            onClick={() => setStampForSelectedPage("leaveRequest")}
-          >
-            <div className={stampClass.leaveRequest} />
-            <li>Leave Request</li>
-          </div>
+              <li className={classes["/services/LeaveRequest"]}>Leave Request</li>
           </Link>
         </ul>
-
       </div>
 
-      <div className={managerSectionClass}>
+
+ { rank === "topManagement" &&
+      <div style={{marginTop:"30px"}}>
         <h3>Manager section</h3>
-        
         <Link href="showLeaveRequests">
-          <div
-            className="listItem"
-            onClick={() => setStampForSelectedPage("showLeaveRequests")}
-          >
-            <div className={stampClass.showLeaveRequests} />
-            <li>Show Leave Requests</li>
-          </div>
+            <li className={classes["/services/showLeaveRequests"]}>Show Leave Requests</li>
         </Link>
-      </div>
+        <Link href="viewEmployees">
+            <li className={classes["/services/viewEmployees"]}>View Employees</li>
+        </Link>
+      </div>}
 
     </div>
   );
